@@ -70,7 +70,7 @@ export default function Experience() {
               </div>
 
               <p className="mt-2 flex flex-wrap items-baseline gap-x-3 text-[15px]">
-                <span className="font-medium text-brand">{job.org}</span>
+                <span className="font-medium text-brand-text">{job.org}</span>
                 <span className="text-line-2">/</span>
                 <span className="t-meta text-muted">{job.date}</span>
                 <span className="text-line-2">/</span>
@@ -80,7 +80,7 @@ export default function Experience() {
               <ul className="mt-7 space-y-4">
                 {job.points.map((p) => (
                   <li key={p} className="relative max-w-[74ch] pl-6 text-[16px] leading-[1.65] text-body">
-                    <span className="absolute left-0 top-[11px] h-px w-3 bg-line-2" />
+                    <span className="absolute left-0 top-[11px] h-px w-3 grad-hairline" />
                     {p}
                   </li>
                 ))}

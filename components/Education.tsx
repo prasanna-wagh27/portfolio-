@@ -71,7 +71,7 @@ export default function Education() {
               <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-4">
                 <a
                   href="mailto:prasannawagh146@gmail.com"
-                  className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3 text-[15px] font-medium text-white transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_16px_30px_-18px_rgba(13,20,24,0.9)]"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3 text-[15px] font-medium text-white transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_16px_34px_-16px_rgba(26,160,230,0.75)]"
                 >
                   prasannawagh146@gmail.com
                   <svg

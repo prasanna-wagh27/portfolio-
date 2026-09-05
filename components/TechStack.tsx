@@ -85,10 +85,10 @@ export default function TechStack() {
               <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-4">
                 {g.items.map((it) => (
                   <li key={it.label} className="group flex items-center gap-3">
-                    <span className="grid h-9 w-9 flex-none place-items-center rounded-xl bg-white shadow-[0_1px_2px_rgba(9,40,60,0.05),0_6px_16px_-12px_rgba(9,40,60,0.4)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[2px]">
+                    <span className="tile grid h-10 w-10 flex-none place-items-center rounded-xl">
                       <TechIcon slug={it.slug} />
                     </span>
-                    <span className="text-[14.5px] tracking-[-0.015em] text-ink-2">{it.label}</span>
+                    <span className="text-[14.5px] tracking-[-0.015em] text-ink-2 transition-colors duration-300 group-hover:text-brand-text">{it.label}</span>
                   </li>
                 ))}
               </ul>

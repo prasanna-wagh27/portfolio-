@@ -19,13 +19,13 @@ export default function Section({
   soft?: boolean;
 }) {
   return (
-    <section id={id} className={`scroll-mt-20 ${soft ? "wash-soft" : "bg-white"}`}>
+    <section id={id} className={`scroll-mt-20 ${soft ? "wash-section" : "bg-white"}`}>
       <div className="mx-auto max-w-5xl px-6 sm:px-10">
-        <hr className="rule" />
+        {soft ? null : <hr className="rule" />}
         <div className="grid gap-8 py-16 sm:py-24 lg:grid-cols-[168px_1fr] lg:gap-14">
           <Reveal>
             <p className="t-label flex items-center gap-2.5 pt-1 text-muted lg:sticky lg:top-24">
-              <span className="h-[5px] w-[5px] rounded-full bg-brand" />
+              <span className="h-[6px] w-[6px] rounded-full bg-brand" />
               {label}
             </p>
           </Reveal>

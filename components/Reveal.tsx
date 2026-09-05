@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
-/** Fades content up as it enters the viewport. ~700 bytes, no dependencies. */
+/** Reveals children on scroll: blur and rise, with an optional stagger. */
 export default function Reveal({
   children,
   delay = 0,
@@ -28,7 +28,7 @@ export default function Reveal({
           io.disconnect();
         }
       },
-      { rootMargin: "0px 0px -6% 0px", threshold: 0.12 },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.1 },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -38,7 +38,7 @@ export default function Reveal({
     <div
       ref={ref}
       className={`${shown ? "reveal-in" : "reveal"} ${className}`}
-      style={{ transitionDelay: shown ? `${delay}ms` : undefined }}
+      style={{ "--d": `${delay}ms` } as React.CSSProperties}
     >
       {children}
     </div>

@@ -1,4 +1,3 @@
-import Reveal from "./Reveal";
 import Stat from "./Stat";
 
 const LINKS = [
@@ -10,27 +9,27 @@ const LINKS = [
 
 export default function Masthead() {
   return (
-    <header id="top" className="wash relative scroll-mt-20">
+    <header id="top" className="wash-top relative scroll-mt-20">
       <div className="mx-auto max-w-5xl px-6 pb-14 pt-20 sm:px-10 sm:pb-16 sm:pt-28">
-        <Reveal>
+        <div className="rise">
           <p className="t-label flex items-center gap-2.5 text-muted">
-            <span className="h-[5px] w-[5px] rounded-full bg-brand" />
+            <span className="dot-live h-[6px] w-[6px] rounded-full bg-brand" />
             Pune, India
             <span className="text-line-2">/</span>
             Open to full-stack roles
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal delay={60}>
+        <div className="rise" style={{ "--d": "60ms" } as React.CSSProperties}>
           <h1 className="t-name mt-7 text-[clamp(52px,10.5vw,116px)] text-ink">
             Prasanna
             <br />
-            Wagh<span className="text-brand">.</span>
+            Wagh<span className="accent-dot">.</span>
           </h1>
-        </Reveal>
+        </div>
 
         <div className="mt-11 grid gap-x-16 gap-y-10 lg:grid-cols-[1fr_minmax(0,320px)]">
-          <Reveal delay={120}>
+          <div className="rise" style={{ "--d": "120ms" } as React.CSSProperties}>
             <p className="max-w-[46ch] text-[clamp(19px,2.1vw,23px)] font-medium leading-[1.36] tracking-[-0.025em] text-ink-2">
               Full-stack engineer. I build multi-role SaaS with React, Node.js, TypeScript and
               PostgreSQL, and I take it all the way to production.
@@ -46,7 +45,7 @@ export default function Masthead() {
               <a
                 href="/Prasanna-Wagh-Fullstack-Engineer.pdf"
                 download
-                className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3 text-[15px] font-medium text-white transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_16px_30px_-18px_rgba(13,20,24,0.9)]"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3 text-[15px] font-medium text-white transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_16px_34px_-16px_rgba(26,160,230,0.75)]"
               >
                 Résumé
                 <svg
@@ -70,9 +69,9 @@ export default function Masthead() {
                 prasannawagh146@gmail.com
               </a>
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal delay={180}>
+          <div className="rise" style={{ "--d": "180ms" } as React.CSSProperties}>
             <p className="t-label text-faint">Elsewhere</p>
             <ul className="mt-4">
               {LINKS.slice(1).map((l) => (
@@ -88,22 +87,22 @@ export default function Masthead() {
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
         </div>
       </div>
 
       <div className="mx-auto max-w-5xl px-6 pb-4 sm:px-10">
-        <Reveal delay={240}>
-          <div className="panel rounded-[26px] px-8 py-9 sm:px-11 sm:py-11">
+        <div className="rise" style={{ "--d": "240ms" } as React.CSSProperties}>
+          <div className="panel lift rounded-[26px] px-8 py-9 sm:px-11 sm:py-11">
             <p className="t-label text-faint">Measured on shipped work</p>
             <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
-              <Stat value="40" unit="%" label="faster API responses after query tuning" />
-              <Stat value="60" unit="%" prefix="~" label="fewer auth support tickets" />
-              <Stat value="30" unit="%" prefix="~" label="quicker average page loads" />
-              <Stat value="10" unit="min" prefix="<" label="to release, previously hours" />
+              <Stat animate value="40" unit="%" label="faster API responses after query tuning" />
+              <Stat animate value="60" unit="%" prefix="~" label="fewer auth support tickets" />
+              <Stat animate value="30" unit="%" prefix="~" label="quicker average page loads" />
+              <Stat animate value="10" unit="min" prefix="<" label="to release, previously hours" />
             </div>
           </div>
-        </Reveal>
+        </div>
       </div>
     </header>
   );

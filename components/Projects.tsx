@@ -115,7 +115,7 @@ export default function Projects() {
                           href={p.href}
                           target="_blank"
                           rel="noopener"
-                          className="link font-medium text-brand"
+                          className="link font-medium text-brand-text"
                         >
                           {p.hrefLabel}
                         </a>

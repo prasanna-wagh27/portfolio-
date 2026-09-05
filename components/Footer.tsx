@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="wash-soft">
+    <footer className="bg-white">
       <div className="mx-auto max-w-5xl px-6 sm:px-10">
         <hr className="rule" />
         <div className="flex flex-col gap-3 py-9 text-[13px] text-muted sm:flex-row sm:items-center sm:justify-between">

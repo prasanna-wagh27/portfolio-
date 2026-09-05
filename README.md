@@ -21,30 +21,44 @@ plain text chip rather than an invented logo.
 
 ## Design system
 
-Three rules the CSS enforces, all of them lifted from studying lightwork.co
-rather than from a component library:
+Palette and surface values are taken from lightwork.co's own stylesheet rather
+than eyeballed from screenshots:
 
-1. **Surfaces are gradients with a soft shadow, never 1px boxes.** `.panel` is a
-   158deg white to pale blue gradient over a two-stop shadow. There is no card
-   border anywhere on the page.
-2. **Rules fade at the ends.** `.rule` is a gradient, transparent to `#e2e8ec` to
-   transparent, so section breaks do not read as table lines.
-3. **One accent.** `#0a7ad0`, used on the period after the name, the label dots,
-   the units beside figures, and links on hover. Everything else is the ink ramp.
+| Token | Value | Source |
+| --- | --- | --- |
+| `--color-brand` | `#1aa0e6` | their brand blue |
+| `--color-tint` | `#e7f6fe` | their pale surface |
+| Signature gradient | `linear-gradient(191deg,#62e9ff,#1aa0e6 53.5%,#886be0)` | verbatim |
+| Card shadow | `0 4px 10px -2px rgb(0 0 0/.05), 0 0 0 1px rgb(26 160 230/.12)` | verbatim |
+| Glow | `0 0 43px rgb(26 160 230/.32)` | verbatim |
+| Section wash | `linear-gradient(180deg,#fff,#e7f6fe 13%,#e7f6fe 84%,#fff)` | verbatim |
 
-The masthead sits on `.wash`, two overlapping radial gradients over white, so the
-page opens with atmosphere instead of a saturated hero band.
+Three things make that system read as crisp, and all three are now in place:
 
-**Type.** Geist, self-hosted. The name is set at `clamp(52px, 10.5vw, 116px)` with
-`-0.045em` tracking and `0.92` line-height. Body runs 16 to 17px at 1.6 to 1.65.
-Labels are 11px at `0.2em` tracking, uppercase. Figures use a `Stat` component
-that sets the numeral large and drops the unit to a smaller size hung off the top,
-the way the reference sets `85%`. Tabular numerals throughout, `text-wrap: balance`
-on headings and `pretty` on paragraphs.
+1. **Shadows are blue tinted, never grey**, and cards carry a
+   `0 0 0 1px rgb(26 160 230/.12)` ring in place of a border.
+2. **Sections fade white to tint to white**, so they melt into one another
+   instead of meeting at a hairline. The masthead fades back to white at its
+   foot for the same reason.
+3. **One saturated element.** The 191deg gradient appears only on the scroll
+   progress bar and the period after the name.
 
-**Layout.** Every section is a two column frame: a sticky label rail on the left,
-content on the right. That keeps the page reading as a document rather than a
-stack of centred marketing blocks.
+`#1aa0e6` on white is 2.9:1, so two derived blues carry the text: `#1595db`
+for large display accents (3.2:1) and `#0b6ea6` for links and units (5.4:1).
+
+**Type.** Geist, self-hosted. Name at `clamp(52px, 10.5vw, 116px)`, `-0.045em`
+tracking, `0.92` line-height. Labels 11px at `0.2em`. Figures use a `Stat`
+component that sets the numeral large and hangs the unit smaller off the top.
+
+**Motion.** Entrance is a blur-and-rise (`translateY(22px)` plus `blur(7px)` to
+zero) staggered by a `--d` custom property; the masthead runs it on load, the
+rest on an IntersectionObserver. Figures count up once on first view. Tech
+tiles lift with a spring curve and gain a blue ring and glow on hover. A two
+pixel progress bar in the signature gradient tracks reading position. Every
+one of these collapses under `prefers-reduced-motion: reduce`.
+
+**Layout.** Every section is a two column frame: a sticky label rail on the
+left, content on the right.
 
 ## Structure
 
@@ -57,7 +71,7 @@ app/
 components/
   Nav  Masthead  Experience  TechStack  Projects  Education  Footer
   Section  Stat  TechIcon
-  Reveal          (with Nav, the only client components)
+  Reveal  CountUp  ScrollProgress   (client components, with Nav)
 lib/
   icons.ts        generated brand marks
 scripts/

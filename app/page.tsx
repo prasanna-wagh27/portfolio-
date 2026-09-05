@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import ScrollProgress from "@/components/ScrollProgress";
 import Masthead from "@/components/Masthead";
 import Experience from "@/components/Experience";
 import TechStack from "@/components/TechStack";
@@ -15,6 +16,7 @@ export default function Page() {
       >
         Skip to content
       </a>
+      <ScrollProgress />
       <Nav />
       <main>
         <Masthead />
