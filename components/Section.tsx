@@ -29,7 +29,7 @@ export default function Section({
               {label}
             </p>
           </Reveal>
-          <div>
+          <div className="min-w-0">
             {title ? (
               <Reveal>
                 <h2 className="t-h2 mb-12 max-w-[20ch] text-[clamp(26px,3.2vw,36px)] text-ink">

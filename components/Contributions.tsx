@@ -85,7 +85,7 @@ export default async function Contributions() {
       </Reveal>
 
       <Reveal delay={80}>
-        <div className="mt-9 overflow-x-auto pb-2">
+        <div className="mt-9 overflow-x-auto pb-2 [mask-image:linear-gradient(90deg,#000_0%,#000_94%,transparent_100%)] lg:[mask-image:none]">
           <div className="min-w-[680px]">
             <div className="mb-2 flex gap-[3px] pl-0">
               {weeks.map((_, i) => {

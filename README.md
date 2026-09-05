@@ -73,8 +73,14 @@ left, content on the right.
 
 ## Sections
 
-Masthead, Experience, Projects, Stack, Activity, Background. Two decisions worth
-recording:
+Masthead, Experience, Projects, Approach, Stack, Activity, Background.
+
+**Approach is the page's one dark band**, the same device lightwork.co uses to
+break a long light page. Three principles on near-black with a cyan accent. It
+exists for contrast as much as for content: without it the page was uniformly
+pale and read as washed out.
+
+Two more decisions worth recording:
 
 **Experience is compressed to four lines per role**, down from six, each one
 carrying an outcome. Recruiters skim; a wall of bullets does not get read.

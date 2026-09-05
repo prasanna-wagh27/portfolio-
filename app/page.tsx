@@ -4,6 +4,7 @@ import Masthead from "@/components/Masthead";
 import Experience from "@/components/Experience";
 import TechStack from "@/components/TechStack";
 import Projects from "@/components/Projects";
+import Approach from "@/components/Approach";
 import Contributions from "@/components/Contributions";
 import Education from "@/components/Education";
 import Footer from "@/components/Footer";
@@ -23,6 +24,7 @@ export default function Page() {
         <Masthead />
         <Experience />
         <Projects />
+        <Approach />
         <TechStack />
         <Contributions />
         <Education />

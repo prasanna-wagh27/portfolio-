@@ -17,15 +17,15 @@
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* ink ramp */
-  --color-ink: #0b1a24;
-  --color-ink-2: #14293a;
-  --color-body: #46606f;
-  --color-muted: #6e8896;
-  --color-faint: #93a8b4;
+  --color-ink: #08151d;
+  --color-ink-2: #102434;
+  --color-body: #3f5a68;   /* 7.4:1 */
+  --color-muted: #566f7d;  /* 5.4:1 */
+  --color-faint: #6e8896;  /* 3.8:1, decorative labels only */
 
   /* structure */
-  --color-line: #e3edf4;
-  --color-line-2: #cfe0eb;
+  --color-line: #dde8f0;
+  --color-line-2: #c3d5e2;
   --color-paper: #ffffff;
 
   /* brand, straight from the reference */
@@ -135,6 +135,17 @@
   }
   .grad-hairline {
     background: linear-gradient(90deg, #1aa0e6 0%, rgba(56, 233, 137, 0) 100%);
+  }
+
+  .wash-dark {
+    background:
+      radial-gradient(90% 62% at 50% 0%, rgba(26, 160, 230, 0.22) 0%, rgba(7, 23, 34, 0) 62%),
+      linear-gradient(180deg, #071722 0%, #0a1f2e 100%);
+  }
+  .rule-dark {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, rgba(92, 201, 246, 0.32) 0%, rgba(92, 201, 246, 0.08) 78%, transparent);
   }
 
   .rule {
