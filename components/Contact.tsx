@@ -16,12 +16,13 @@ export default function Contact() {
             <span className="h-1.5 w-1.5 rounded-full bg-white" />
             Contact
           </p>
-          <h2 className="display-xl mx-auto mt-6 max-w-[16ch] text-[clamp(34px,6vw,66px)] text-white">
-            Have something that needs building end to end?
+          <h2 className="display-xl mx-auto mt-6 max-w-[17ch] text-[clamp(34px,6vw,66px)] text-white">
+            Hiring a full-stack engineer who can own the whole stack?
           </h2>
-          <p className="mx-auto mt-7 max-w-[48ch] text-[clamp(16.5px,2vw,19px)] leading-[1.55] text-white">
-            I&rsquo;m open to full-stack roles and selective freelance work. Email is the fastest way
-            to reach me — I reply the same day.
+          <p className="mx-auto mt-7 max-w-[52ch] text-[clamp(16.5px,2vw,19px)] leading-[1.55] text-white">
+            I&rsquo;m looking for full-stack and product engineering roles, hybrid in Pune. Send the
+            job description and I&rsquo;ll tell you honestly whether I&rsquo;m the right fit — I reply
+            the same day. Freelance enquiries are welcome too.
           </p>
         </Reveal>
 
@@ -54,7 +55,7 @@ export default function Contact() {
                   className="flex h-full flex-col gap-1.5 bg-brand-deep/40 px-5 py-5 text-left backdrop-blur-sm transition-colors hover:bg-brand-deep/70"
                 >
                   <span className="eyebrow text-white/75">{l.k}</span>
-                  <span className="break-all text-[15px] font-medium text-white">{l.v}</span>
+                  <span className="text-[14.5px] font-medium break-words text-white">{l.v}</span>
                 </a>
               </li>
             ))}

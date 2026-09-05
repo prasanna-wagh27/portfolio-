@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
+import Glance from "@/components/Glance";
 import Pillars from "@/components/Pillars";
 import Work from "@/components/Work";
 import BeforeAfter from "@/components/BeforeAfter";
@@ -23,6 +24,7 @@ export default function Page() {
       <main>
         <Hero />
         <Stats />
+        <Glance />
         <Pillars />
         <Work />
         <BeforeAfter />

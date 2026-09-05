@@ -47,7 +47,7 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
             </span>
-            Open to full-stack roles — Pune / remote
+            Open to full-stack engineering roles — Pune (hybrid)
           </span>
         </Reveal>
 
@@ -69,31 +69,29 @@ export default function Hero() {
         <Reveal delay={240}>
           <div className="mt-10 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
             <a
-              href="#work"
-              className="group inline-flex w-full max-w-sm items-center gap-3.5 rounded-full bg-white px-6 py-3.5 text-left shadow-[0_18px_40px_-24px_rgba(2,32,56,0.75)] transition-transform hover:-translate-y-0.5 sm:w-auto"
+              href="/Prasanna-Wagh-Fullstack-Engineer.pdf"
+              download
+              className="inline-flex w-full max-w-sm items-center gap-3.5 rounded-full bg-white px-6 py-3.5 text-left shadow-[0_18px_40px_-24px_rgba(2,32,56,0.75)] transition-transform hover:-translate-y-0.5 sm:w-auto"
             >
               <span className="grid h-10 w-10 flex-none place-items-center rounded-full bg-tint text-brand">
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M4 6h16M4 12h16M4 18h10" />
+                  <path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14" />
                 </svg>
               </span>
               <span className="min-w-0">
                 <span className="block text-[16px] font-semibold tracking-[-0.02em] text-ink">
-                  See selected work
+                  Download résumé
                 </span>
-                <span className="block text-[13.5px] text-muted">Three production platforms</span>
+                <span className="block text-[13.5px] text-muted">One page · PDF</span>
               </span>
             </a>
 
             <a
-              href="/Prasanna-Wagh-Fullstack-Engineer.pdf"
-              download
+              href="#work"
               className="inline-flex w-full max-w-sm items-center justify-center gap-2.5 rounded-full border border-white/35 bg-white/12 px-6 py-4 text-[15.5px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20 sm:w-auto"
             >
-              Download résumé
-              <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-                →
-              </span>
+              See selected work
+              <span aria-hidden="true">→</span>
             </a>
           </div>
         </Reveal>

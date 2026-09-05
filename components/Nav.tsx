@@ -46,6 +46,13 @@ export default function Nav() {
         </nav>
 
         <a
+          href="/Prasanna-Wagh-Fullstack-Engineer.pdf"
+          download
+          className="hidden rounded-full px-3.5 py-2 text-[15px] font-medium text-body transition-colors hover:bg-tint hover:text-brand-ink lg:inline-flex"
+        >
+          Résumé
+        </a>
+        <a
           href="mailto:prasannawagh146@gmail.com"
           className="hidden rounded-full bg-ink px-5 py-2.5 text-[14.5px] font-medium text-white transition-transform hover:-translate-y-px sm:inline-flex"
         >
@@ -97,9 +104,17 @@ export default function Nav() {
             </a>
           ))}
           <a
+            href="/Prasanna-Wagh-Fullstack-Engineer.pdf"
+            download
+            onClick={() => setOpen(false)}
+            className="mt-4 rounded-full border border-line-2 px-5 py-3 text-center text-[15px] font-medium text-ink"
+          >
+            Download résumé
+          </a>
+          <a
             href="mailto:prasannawagh146@gmail.com"
             onClick={() => setOpen(false)}
-            className="mt-4 rounded-full bg-ink px-5 py-3 text-center text-[15px] font-medium text-white"
+            className="mt-2.5 rounded-full bg-ink px-5 py-3 text-center text-[15px] font-medium text-white"
           >
             Get in touch
           </a>

@@ -10,7 +10,7 @@ export default function Statement() {
             index that made it slow.
           </h2>
           <p className="mt-8 text-[clamp(22px,3vw,34px)] font-medium tracking-[-0.03em] text-cyan-on-night">
-            That&rsquo;s the job I do.
+            That&rsquo;s the engineer you&rsquo;re hiring.
           </p>
         </Reveal>
       </div>

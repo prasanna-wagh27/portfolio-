@@ -2,6 +2,10 @@
 
 Personal portfolio for **Prasanna Wagh** — full-stack engineer (React · Node.js · TypeScript · PostgreSQL).
 
+The site is aimed at hiring managers and recruiters first: the résumé is the primary
+call to action, an *At a glance* panel answers the screening questions up front, and
+the closing section is framed around hiring rather than client work.
+
 **Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4.**
 
 ## Design system
@@ -42,7 +46,7 @@ app/
   globals.css     design tokens + utilities
   icon.svg        favicon
 components/
-  Nav  Hero  Stats  Pillars  Work  BeforeAfter
+  Nav  Hero  Stats  Glance  Pillars  Work  BeforeAfter
   Statement  Experience  Stack  Contact  Footer
   Reveal  CountUp        (the only two client components)
 public/
