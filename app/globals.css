@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design system — adapted from lightwork.co
+   Vivid azure→cyan gradients, light-blue tinted surfaces,
+   one near-black band, Geist type, generous rounding.
+   Gradient stops are deepened vs. the reference so white text
+   clears WCAG AA instead of sitting at ~2.6:1.
+   ============================================================ */
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ink */
+  --color-ink: #0a1420;
+  --color-ink-2: #0f2233;
+  --color-body: #41545f;
+  --color-muted: #6d7f88;
+
+  /* brand */
+  --color-brand: #0e86d6;
+  --color-brand-deep: #0763a8;
+  --color-brand-bright: #33b4ec;
+  --color-brand-cyan: #7fdcf6;
+  --color-brand-ink: #06466f;
+
+  /* surfaces */
+  --color-tint: #e7f6fe;
+  --color-tint-2: #f3fbff;
+  --color-paper: #ffffff;
+  --color-haze: #fafbfc;
+  --color-line: #e2e8ec;
+  --color-line-2: #cfdbe3;
+
+  /* night band */
+  --color-night: #04121f;
+  --color-night-2: #0a2334;
+  --color-night-line: #16394f;
+  --color-cyan-on-night: #5cc9f6;
+
+  /* semantic */
+  --color-pos: #12805a;
+  --color-pos-tint: #e6f5ef;
+  --color-neg: #c23a2c;
+  --color-neg-tint: #fceeed;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer utilities {
+  /* display type — tight tracking, like the reference */
+  .display {
+    letter-spacing: -0.032em;
+    line-height: 1.04;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  .display-xl {
+    letter-spacing: -0.038em;
+    line-height: 1.0;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  .eyebrow {
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* hero + CTA gradient */
+  .grad-hero {
+    background:
+      /* scrim: keeps white text at AA over the lighter lower stops */
+      linear-gradient(180deg, rgba(2, 38, 68, 0.28) 0%, rgba(2, 38, 68, 0.14) 55%, rgba(2, 38, 68, 0) 78%),
+      radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 55%),
+      linear-gradient(180deg, #065a9b 0%, #0a6cb0 45%, #1288d8 70%, #6fd3f4 100%);
+  }
+  .grad-cta {
+    background:
+      linear-gradient(180deg, rgba(2, 38, 68, 0.2) 0%, rgba(2, 38, 68, 0) 70%),
+      radial-gradient(110% 90% at 50% 115%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 62%),
+      linear-gradient(158deg, #05548f 0%, #0a6cb0 48%, #1a93dd 100%);
+  }
+  .grad-tint {
+    background: linear-gradient(180deg, #ffffff 0%, #eff8fe 42%, #e2f3fd 100%);
+  }
+  .grad-night {
+    background:
+      radial-gradient(90% 70% at 50% 0%, rgba(14, 134, 214, 0.28) 0%, rgba(4, 18, 31, 0) 62%),
+      linear-gradient(180deg, #04121f 0%, #061c2c 100%);
+  }
+  .grad-word {
+    background: linear-gradient(92deg, #0e86d6 0%, #33b4ec 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-in {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

@@ -2,79 +2,84 @@
 
 Personal portfolio for **Prasanna Wagh** — full-stack engineer (React · Node.js · TypeScript · PostgreSQL).
 
-Hand-built static site. No framework, no build step, no bundler, no tracking.
+**Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4.**
 
 ## Design system
 
-Inspired by [lightwork.co](https://www.lightwork.co/) — a high-contrast editorial system:
+Adapted from [lightwork.co](https://www.lightwork.co/): a vivid azure→cyan gradient hero,
+light-blue tinted card surfaces, one near-black statement band, and Geist type with
+tight display tracking.
 
-| Token | Light | Dark |
-| --- | --- | --- |
-| Background | `#ffffff` | `#08090a` |
-| Foreground | `#000000` | `#ffffff` |
-| Muted text | `#41514f` | `#a7b2b0` |
-| Hairline | `#e6e7e9` | `#212627` |
-| Accent | `#0b7ff0` | `#56a8ff` |
-| Positive | `#10794f` | `#45c78d` |
-
-- **Type** — Geist (display + body) and Geist Mono (labels, data rows), self-hosted latin subset, variable weight.
-- **Display tracking** — `-0.032em` / `-0.04em`, line-height `0.98–1.03`.
-- **Radii** — `100px` pills for buttons and tags, `20px` cards, `14px` inner surfaces.
-- **Section rhythm** — mono uppercase eyebrow → display headline → muted lede → a data module (stat strip, before/after panels, comparison rows).
-- Every colour pair clears WCAG AA in both themes.
-
-## Performance budget
-
-| Asset | Size |
+| Role | Value |
 | --- | --- |
-| `index.html` | ~21 KB |
-| `assets/styles.css` | ~21 KB |
-| `assets/main.js` | ~3.7 KB |
-| Geist + Geist Mono (woff2, latin) | ~52 KB |
+| Hero / CTA gradient | `#065a9b` → `#0a6cb0` → `#1288d8` → `#6fd3f4` |
+| Brand | `#0e86d6` (bright `#33b4ec`, deep `#0763a8`, ink `#06466f`) |
+| Tinted surface | `#e7f6fe` / `#f3fbff` |
+| Night band | `#04121f` with `#5cc9f6` accent |
+| Ink / body / muted | `#0a1420` / `#41545f` / `#6d7f88` |
+| Positive / negative | `#12805a` / `#c23a2c` |
 
-Zero third-party requests. Fonts are preloaded and self-hosted, so there is no
-render-blocking stylesheet from a CDN and no FOUT hop.
+Tokens live in `app/globals.css` under `@theme`, so they are available as Tailwind
+utilities (`text-brand`, `bg-tint`, `text-cyan-on-night`, …).
 
-## Interactions
+**Section rhythm**, matching the reference: a small blue dot + wide-tracked uppercase
+eyebrow → a centred display headline → a supporting paragraph → a data module
+(stat cards, project cards with an oversized metric rail, before/after panels).
 
-All vanilla, all progressive enhancement — the page is complete with JavaScript disabled:
+### One deliberate deviation
 
-- Word-by-word masked reveal on display headlines (`IntersectionObserver`).
-- Count-up on stat numerals.
-- Scroll progress bar in the sticky nav.
-- Light/dark toggle, persisted to `localStorage`, applied before first paint.
-- Everything respects `prefers-reduced-motion`.
+The reference puts white text on light cyan at roughly 2.6:1. That fails WCAG AA. This
+site keeps the same look but deepens the gradient's upper stops and lays a soft
+`rgba(2,38,68,·)` scrim over the text zone, so hero and CTA copy sits at **≈5.7:1** —
+AA for body text, comfortably past AA for the display sizes.
+
+## Structure
+
+```
+app/
+  layout.tsx      metadata, JSON-LD Person schema, Geist fonts
+  page.tsx        section composition
+  globals.css     design tokens + utilities
+  icon.svg        favicon
+components/
+  Nav  Hero  Stats  Pillars  Work  BeforeAfter
+  Statement  Experience  Stack  Contact  Footer
+  Reveal  CountUp        (the only two client components)
+public/
+  Prasanna-Wagh-Fullstack-Engineer.pdf
+```
+
+Everything is a React Server Component except `Nav`, `Reveal` and `CountUp`, so the
+client bundle stays small. Fonts are self-hosted through the `geist` package — no
+Google Fonts request. No analytics, no tracking.
 
 ## Local development
 
 ```bash
-python3 -m http.server 8000
-# → http://localhost:8000
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
 ```
-
-There is nothing to install and nothing to compile.
 
 ## Deploying to Vercel
 
+Import the repo at [vercel.com/new](https://vercel.com/new) — the Next.js preset is
+detected automatically, no configuration needed. Or:
+
 ```bash
 npm i -g vercel
-vercel            # preview
-vercel --prod     # production
+vercel --prod
 ```
 
-Or import the repo at [vercel.com/new](https://vercel.com/new) — framework preset
-**Other**, no build command, output directory `.` (the repo root). `vercel.json`
-sets immutable caching on `/assets/*` plus the usual security headers.
-
-Update the canonical URL in `index.html`, `robots.txt` and `sitemap.xml` once the
-domain is attached.
+Security headers are set in `next.config.ts`. Update the canonical URL (`SITE` in
+`app/layout.tsx`) once the domain is attached.
 
 ## Content
 
-Résumé PDF lives at `assets/Prasanna-Wagh-Fullstack-Engineer.pdf` and is linked
-from the hero and the contact section — replace that file to update the download.
+The résumé PDF is served from `public/` and linked from the hero and contact sections —
+replace that file to update the download.
 
 ## Licence
 
-Geist and Geist Mono are © Vercel, licensed under the SIL Open Font License 1.1.
-Site code is free to borrow; the written content and résumé are not.
+Geist and Geist Mono are © Vercel, under the SIL Open Font License 1.1.
+Code is free to borrow; the written content and résumé are not.
