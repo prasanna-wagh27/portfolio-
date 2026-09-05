@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prasanna Wagh — Full-Stack Engineer</title>
+<meta name="description" content="Full-stack engineer in Pune. I build production SaaS with React, Node.js, TypeScript and PostgreSQL — including a tour booking marketplace live across Spain and Europe.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08090a" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://prasannawagh.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Prasanna Wagh — Full-Stack Engineer">
+<meta property="og:description" content="I build production SaaS with React, Node.js, TypeScript and PostgreSQL. Currently leading a tour booking marketplace live across Spain and Europe.">
+<meta property="og:url" content="https://prasannawagh.dev/">
+<meta property="og:image" content="https://prasannawagh.dev/assets/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/styles.css">
+<script>
+  // Set theme before first paint to avoid a flash.
+  (function () {
+    try {
+      var t = localStorage.getItem('pw-theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Prasanna Wagh",
+  "jobTitle": "Full-Stack Engineer",
+  "email": "mailto:prasannawagh146@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Pune", "addressRegion": "Maharashtra", "addressCountry": "IN" },
+  "sameAs": ["https://github.com/prasanna-wagh27", "https://www.linkedin.com/in/prasanna-wagh27"],
+  "knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Redis", "Docker", "System Design"]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#work">Skip to work</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#top" aria-label="Prasanna Wagh, home">
+      <span class="brand__mark" aria-hidden="true">PW</span>
+      <span class="brand__text">Prasanna Wagh</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#impact">Impact</a>
+      <a href="#experience">Experience</a>
+      <a href="#stack">Stack</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="iconbtn" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M4.2 12H1.8M22.2 12h-2.4M6.5 6.5 4.8 4.8M19.2 19.2l-1.7-1.7M17.5 6.5l1.7-1.7M4.8 19.2l1.7-1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z"/></svg>
+      </button>
+      <a class="btn btn--solid btn--sm" href="mailto:prasannawagh146@gmail.com">Get in touch</a>
+    </div>
+  </div>
+  <div class="nav__progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="top">
+
+  <!-- ─────────────────────────  HERO  ───────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="ticker reveal">
+        <span class="ticker__num">2 yrs</span>
+        <span>shipping production software — one platform live across Spain &amp; Europe.</span>
+      </p>
+
+      <h1 class="display display--xl" data-split>Full-stack engineer who ships the whole thing.</h1>
+
+      <div class="hero__grid">
+        <div class="hero__col">
+          <p class="lede reveal">
+            I design, build and deploy multi-role SaaS end to end &mdash;
+            <strong>React, Node.js, TypeScript, PostgreSQL</strong>. Currently leading development of a tour
+            booking marketplace live across Spain and Europe, reporting to the CEO and guiding a team of three.
+          </p>
+
+          <div class="hero__actions reveal">
+            <a class="btn btn--solid" href="#work">See selected work <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn--ghost" href="/assets/Prasanna-Wagh-Fullstack-Engineer.pdf" download>Download r&eacute;sum&eacute;</a>
+          </div>
+
+          <div class="availability reveal">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Open to full-stack roles &mdash; Pune / remote</span>
+          </div>
+        </div>
+
+        <aside class="runtime reveal" aria-label="Current project runtime">
+          <header class="runtime__head">
+            <span class="runtime__k">Currently building</span>
+            <span class="tag tag--live"><span class="dot dot--sm" aria-hidden="true"></span>Live</span>
+          </header>
+          <p class="runtime__title">Tour Experience Marketplace</p>
+          <ul class="runtime__rows">
+            <li><span>client/</span><b>React &middot; Vite &middot; TypeScript</b></li>
+            <li><span>api/</span><b>Node &middot; Express &middot; TypeORM</b></li>
+            <li><span>data/</span><b>PostgreSQL &middot; Redis</b></li>
+            <li><span>jobs/</span><b>BullMQ workers</b></li>
+            <li><span>ship/</span><b>Docker &rarr; Railway CI/CD</b></li>
+          </ul>
+          <footer class="runtime__foot">
+            <span>4 portals</span><span>3 devs</span><span>Spain &amp; EU</span>
+          </footer>
+        </aside>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <ul class="statstrip reveal">
+        <li><span class="statstrip__n" data-count="40" data-suffix="%">40%</span><span class="statstrip__l">Fewer redundant DB queries</span></li>
+        <li><span class="statstrip__n" data-count="30" data-suffix="%">30%</span><span class="statstrip__l">Faster average page load</span></li>
+        <li><span class="statstrip__n" data-count="4" data-suffix="">4</span><span class="statstrip__l">Role-based portals shipped</span></li>
+        <li><span class="statstrip__n" data-count="10" data-suffix="k+">10k+</span><span class="statstrip__l">Students served, uni platform</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  WORK  ───────────────────────── -->
+  <section id="work" class="section">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="eyebrow__rule" aria-hidden="true"></span>Selected work</p>
+      <h2 class="display" data-split>Three products. Real users. Shipped to production.</h2>
+      <p class="section__lede reveal">Not tutorials or clones — platforms with paying operators, permission hierarchies and uptime that matters.</p>
+
+      <div class="cards">
+
+        <article class="card card--feature">
+          <div class="card__head">
+            <div>
+              <span class="tag tag--live"><span class="dot dot--sm" aria-hidden="true"></span>Live in production</span>
+              <h3 class="card__title">Tour Experience Marketplace</h3>
+              <p class="card__role">Lead full-stack engineer · Octogle Technologies</p>
+            </div>
+            <span class="card__index" aria-hidden="true">01</span>
+          </div>
+          <p class="card__body">
+            A booking marketplace for walking tours, boat experiences and local activities, live across
+            Spain and Europe. I took it from inception to production and guided a three-person team:
+            four role-specific portals (Tour Operator, Guide, Customer, Admin), a custom JWT auth layer
+            with RBAC, Redis caching, BullMQ job queues for booking and notification pipelines, and a
+            REST API built on Node.js, TypeORM and PostgreSQL.
+          </p>
+          <ul class="metrics">
+            <li><b>~60%</b><span>fewer auth support issues</span></li>
+            <li><b>~40%</b><span>fewer redundant DB queries</span></li>
+            <li><b>&lt;10 min</b><span>release time, down from hours</span></li>
+          </ul>
+          <ul class="pills">
+            <li>React.js</li><li>Node.js</li><li>Express</li><li>TypeScript</li><li>PostgreSQL</li>
+            <li>TypeORM</li><li>Redis</li><li>BullMQ</li><li>Docker</li><li>Railway</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card__head">
+            <div>
+              <span class="tag">Multi-tenant SaaS</span>
+              <h3 class="card__title">AI-Powered Recruiter Marketplace</h3>
+              <p class="card__role">Full-stack engineer · Octogle Technologies</p>
+            </div>
+            <span class="card__index" aria-hidden="true">02</span>
+          </div>
+          <p class="card__body">
+            A talent marketplace with four independent interfaces — Employer, Recruiter, Candidate and
+            Admin — each with its own permission hierarchy. Employers post vacancies; independent
+            recruiters bid, refer candidates and earn commission. I built the job-matching workflows and
+            the candidate pipeline management system on top of a JWT-secured API.
+          </p>
+          <ul class="metrics">
+            <li><b>4</b><span>independent interfaces</span></li>
+            <li><b>RBAC</b><span>per-role permission trees</span></li>
+          </ul>
+          <ul class="pills">
+            <li>React.js</li><li>Vite</li><li>TypeScript</li><li>Node.js</li><li>PostgreSQL</li><li>JWT</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card__head">
+            <div>
+              <span class="tag">Side project</span>
+              <h3 class="card__title">Sendkart</h3>
+              <p class="card__role">Solo · <a class="ext" href="https://sendkart.in" target="_blank" rel="noopener">sendkart.in ↗</a></p>
+            </div>
+            <span class="card__index" aria-hidden="true">03</span>
+          </div>
+          <p class="card__body">
+            A no-code platform that lets small businesses publish a mini website without touching code —
+            drag-and-drop components, QR code integration and built-in feedback collection, aimed at SMBs
+            who need a presence online in an afternoon.
+          </p>
+          <ul class="metrics">
+            <li><b>No-code</b><span>drag-and-drop builder</span></li>
+            <li><b>SMB</b><span>target segment</span></li>
+          </ul>
+          <ul class="pills">
+            <li>Next.js</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  IMPACT (before / after)  ───────────────────────── -->
+  <section id="impact" class="section section--alt">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="eyebrow__rule" aria-hidden="true"></span>The measurable part</p>
+      <h2 class="display" data-split>Same platform. Before and after I got my hands on it.</h2>
+      <p class="section__lede reveal">Performance and delivery work on the tour marketplace, measured against the numbers we had going in.</p>
+
+      <div class="compare">
+        <div class="panel panel--before reveal">
+          <header class="panel__head">
+            <span class="panel__label">Before</span>
+            <span class="badge badge--neg">Slow and manual</span>
+          </header>
+          <ul class="rows">
+            <li><span>Booking queries</span><b>Hit the DB every request</b></li>
+            <li><span>Notifications</span><b>Blocking, in-request</b></li>
+            <li><span>Auth</span><b>Third-party provider</b></li>
+            <li><span>Release</span><b>Hours, by hand</b></li>
+            <li><span>Page load</span><b>Baseline</b></li>
+          </ul>
+        </div>
+
+        <div class="panel panel--after reveal">
+          <header class="panel__head">
+            <span class="panel__label">After</span>
+            <span class="badge badge--pos">Cached, queued, automated</span>
+          </header>
+          <ul class="rows">
+            <li><span>Booking queries</span><b>Redis cache · <i class="pos">−40%</i> redundant reads</b></li>
+            <li><span>Notifications</span><b>BullMQ background jobs</b></li>
+            <li><span>Auth</span><b>Custom JWT + RBAC · <i class="pos">−60%</i> tickets</b></li>
+            <li><span>Release</span><b>Docker + Railway CI/CD · <i class="pos">&lt;10 min</i></b></li>
+            <li><span>Page load</span><b><i class="pos">−30%</i> average</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bigstats">
+        <div class="bigstat reveal"><b><span data-count="40" data-suffix="%">40%</span></b><p>API response time cut on a production healthcare platform, through query optimisation and database indexing.</p></div>
+        <div class="bigstat reveal"><b><span data-count="35" data-suffix="%">35%</span></b><p>Faster feature delivery after adopting Claude Code with agentic subagents across the team.</p></div>
+        <div class="bigstat reveal"><b><span data-count="25" data-suffix="%">25%</span></b><p>Fewer UI support tickets after rebuilding responsive components in Angular and TypeScript.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  EXPERIENCE  ───────────────────────── -->
+  <section id="experience" class="section">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="eyebrow__rule" aria-hidden="true"></span>Experience</p>
+      <h2 class="display" data-split>Two roles. Both ended in production.</h2>
+
+      <ol class="timeline">
+        <li class="job reveal">
+          <div class="job__meta">
+            <span class="job__date">Jul 2025 — Present</span>
+            <span class="job__place">Pune, MH</span>
+          </div>
+          <div class="job__main">
+            <h3 class="job__title">Full Stack Developer</h3>
+            <p class="job__org">Octogle Technologies</p>
+            <ul class="bullets">
+              <li>Led full-stack development of a large-scale tour booking marketplace live across Spain and Europe, reporting directly to the CEO and guiding a team of three developers.</li>
+              <li>Architected a custom JWT authentication system with role-based access control across three user roles, removing the third-party auth dependency and cutting auth-related support issues by ~60%.</li>
+              <li>Engineered Redis caching and BullMQ background job queues for booking and notification pipelines — ~40% fewer redundant DB queries, ~30% better average page load.</li>
+              <li>Designed and built a recruiter marketplace with four independent interfaces and distinct permission hierarchies using React, Vite and TypeScript.</li>
+              <li>Established CI/CD with Docker and Railway, taking manual release time from hours to under ten minutes per deployment.</li>
+              <li>Adopted Claude Code with agentic subagents (~35% faster delivery) and enforced TypeScript and Git standards across the team.</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="job reveal">
+          <div class="job__meta">
+            <span class="job__date">Jul 2023 — Oct 2024</span>
+            <span class="job__place">Pune, MH</span>
+          </div>
+          <div class="job__main">
+            <h3 class="job__title">Java Full Stack Developer</h3>
+            <p class="job__org">Averta Strategy Pvt Ltd</p>
+            <ul class="bullets">
+              <li>Built and optimised REST APIs for a production healthcare application in Spring Boot, achieving a 40% reduction in API response time via query optimisation and database indexing.</li>
+              <li>Integrated JWT authentication and RBAC to secure endpoints across multiple roles in a HIPAA-sensitive environment.</li>
+              <li>Shipped responsive Angular + TypeScript UI components, reducing UI-related support tickets by ~25%.</li>
+              <li>Co-developed a government university platform serving 10,000+ students, handling concurrent sessions and dynamic content delivery.</li>
+              <li>Implemented patient PDF report generation and automated email/SMS workflows, saving ~3 hours of manual reporting per week.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  STACK  ───────────────────────── -->
+  <section id="stack" class="section section--alt">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="eyebrow__rule" aria-hidden="true"></span>Stack</p>
+      <h2 class="display" data-split>What I reach for.</h2>
+
+      <div class="stack">
+        <div class="stackgroup reveal">
+          <h3>Frontend</h3>
+          <ul><li>React.js</li><li>Next.js</li><li>TypeScript</li><li>JavaScript ES2023+</li><li>Vite</li><li>Tailwind CSS</li><li>Material UI</li><li>Zustand</li><li>React Query</li></ul>
+        </div>
+        <div class="stackgroup reveal">
+          <h3>Backend</h3>
+          <ul><li>Node.js</li><li>Express.js</li><li>REST API design</li><li>TypeORM</li><li>JWT auth</li><li>BullMQ</li><li>Background jobs</li><li>Spring Boot</li></ul>
+        </div>
+        <div class="stackgroup reveal">
+          <h3>Data</h3>
+          <ul><li>PostgreSQL</li><li>MySQL</li><li>Redis — cache</li><li>Redis — queues</li><li>Indexing &amp; query tuning</li></ul>
+        </div>
+        <div class="stackgroup reveal">
+          <h3>DevOps &amp; Cloud</h3>
+          <ul><li>Docker</li><li>Vercel</li><li>Railway</li><li>CI/CD pipelines</li><li>GitHub Actions</li><li>Git · GitHub · GitLab</li></ul>
+        </div>
+        <div class="stackgroup reveal">
+          <h3>AI &amp; tooling</h3>
+          <ul><li>Claude Code</li><li>Agentic workflows</li><li>Subagents</li></ul>
+        </div>
+        <div class="stackgroup reveal">
+          <h3>Practices</h3>
+          <ul><li>System design</li><li>Performance optimisation</li><li>RBAC</li><li>Code review</li><li>Agile / Scrum</li></ul>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div class="edu__item reveal">
+          <span class="edu__k">Education</span>
+          <b>B.Tech, Mechanical Engineering</b>
+          <span>University of Mumbai · 2018–2022 · CGPA 7.77/10</span>
+        </div>
+        <div class="edu__item reveal">
+          <span class="edu__k">Certification</span>
+          <b>Full Stack Java Development</b>
+          <span>Vibrantminds Technologies Pvt. Ltd.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────  CONTACT  ───────────────────────── -->
+  <section id="contact" class="section contact">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span class="eyebrow__rule" aria-hidden="true"></span>Contact</p>
+      <h2 class="display display--xl" data-split>Have something that needs building end to end?</h2>
+      <p class="section__lede reveal">I'm open to full-stack roles and selective freelance work. The fastest way to reach me is email.</p>
+
+      <div class="hero__actions reveal">
+        <a class="btn btn--solid" href="mailto:prasannawagh146@gmail.com">prasannawagh146@gmail.com <span class="btn__arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="/assets/Prasanna-Wagh-Fullstack-Engineer.pdf" download>Download résumé</a>
+      </div>
+
+      <ul class="links reveal">
+        <li><a href="https://github.com/prasanna-wagh27" target="_blank" rel="noopener"><span>GitHub</span><b>prasanna-wagh27 ↗</b></a></li>
+        <li><a href="https://www.linkedin.com/in/prasanna-wagh27" target="_blank" rel="noopener"><span>LinkedIn</span><b>prasanna-wagh27 ↗</b></a></li>
+        <li><a href="tel:+917798701635"><span>Phone</span><b>+91 77987 01635</b></a></li>
+        <li><a href="https://sendkart.in" target="_blank" rel="noopener"><span>Project</span><b>sendkart.in ↗</b></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>© <span id="year">2026</span> Prasanna Wagh</span>
+    <span class="footer__mid">Pune, Maharashtra, India</span>
+    <span>Hand-built — no framework, no tracking.</span>
+  </div>
+</footer>
+
+<script src="/assets/main.js" defer></script>
+</body>
+</html>
