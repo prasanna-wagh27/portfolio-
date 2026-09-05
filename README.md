@@ -71,6 +71,28 @@ tracks reading position. Every one of these collapses under
 **Layout.** Every section is a two column frame: a sticky label rail on the
 left, content on the right.
 
+## Sections
+
+Masthead, Experience, Projects, Stack, Activity, Background. Two decisions worth
+recording:
+
+**Experience is compressed to four lines per role**, down from six, each one
+carrying an outcome. Recruiters skim; a wall of bullets does not get read.
+
+**Activity pulls a real GitHub contribution graph** from
+`github-contributions-api.jogruber.de` for `prasanna-wagh27`, revalidated every
+six hours, rendered as a subgrid of 11px cells in the brand ramp. If the fetch
+fails the whole section returns `null` rather than showing an empty grid.
+
+**A command menu** opens on ⌘K or Ctrl+K: jump to any section, copy the email
+address, download the résumé, open GitHub or LinkedIn. Arrow keys and Enter,
+Escape to dismiss, filtering by label and keyword. It renders through a portal
+to `document.body`, because the sticky nav carries `backdrop-filter`, which
+makes it a containing block for `position: fixed` descendants.
+
+**Durations are computed, not typed.** `lib/duration.ts` derives "1 yr 2 mos"
+from the start date, so the page never goes stale.
+
 ## Structure
 
 ```

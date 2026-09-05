@@ -11,11 +11,12 @@ export default function Masthead() {
     <header id="top" className="wash-top relative scroll-mt-20">
       <div className="mx-auto max-w-5xl px-6 pb-20 pt-20 sm:px-10 sm:pb-28 sm:pt-28">
         <div className="rise">
-          <p className="t-label flex items-center gap-2.5 text-muted">
-            <span className="dot-live h-[6px] w-[6px] rounded-full bg-brand" />
-            Pune, India
-            <span className="text-line-2">/</span>
-            Open to full-stack roles
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <span className="inline-flex items-center gap-2 rounded-full bg-tint px-3 py-1.5 text-[12.5px] font-medium text-brand-large">
+              <span className="dot-live h-[6px] w-[6px] rounded-full bg-brand" />
+              Open to work
+            </span>
+            <span className="t-label text-muted">Pune, India</span>
           </p>
         </div>
 
@@ -29,15 +30,31 @@ export default function Masthead() {
 
         <div className="mt-11 grid gap-x-16 gap-y-10 lg:grid-cols-[1fr_minmax(0,320px)]">
           <div className="rise" style={{ "--d": "120ms" } as React.CSSProperties}>
-            <p className="max-w-[46ch] text-[clamp(19px,2.1vw,23px)] font-medium leading-[1.36] tracking-[-0.025em] text-ink-2">
-              Full-stack engineer. I build multi-role SaaS with React, Node.js, TypeScript and
-              PostgreSQL, and I take it all the way to production.
+            <p className="max-w-[48ch] text-[clamp(19px,2.1vw,23px)] font-medium leading-[1.36] tracking-[-0.025em] text-ink-2">
+              Full-stack engineer. I build multi-role SaaS end to end, from schema and API design
+              through to the interface and the deploy.
             </p>
 
-            <p className="mt-7 max-w-[58ch] text-[17px] leading-[1.62] text-body">
-              Right now I lead the build of a tour booking marketplace running across Spain and
-              Europe, reporting to the CEO and guiding three engineers. Before that, two years on
-              production healthcare and government platforms in Java, Spring Boot and Angular.
+            <p className="mt-7 max-w-[58ch] text-[17px] leading-[1.65] text-body">
+              Right now I lead the build of a tour booking marketplace at{" "}
+              <span className="font-medium text-ink">Octogle Technologies</span> that runs across
+              Spain and Europe, reporting to the CEO and guiding three engineers. On the side I
+              built{" "}
+              <a
+                href="https://sendkart.in"
+                target="_blank"
+                rel="noopener"
+                className="link font-medium text-link"
+              >
+                Sendkart
+              </a>
+              , a no-code site builder for small businesses.
+            </p>
+
+            <p className="mt-4 max-w-[58ch] text-[17px] leading-[1.65] text-body">
+              Before that, two years on production healthcare and government platforms in Java,
+              Spring Boot and Angular, where query tuning and indexing took API response time down
+              by 40%.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">

@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 
+import CommandMenu from "./CommandMenu";
+
 const LINKS = [
   { href: "#experience", label: "Experience" },
-  { href: "#stack", label: "Stack" },
   { href: "#projects", label: "Projects" },
+  { href: "#stack", label: "Stack" },
 ];
 
 export default function Nav() {
@@ -49,6 +51,7 @@ export default function Nav() {
           >
             Résumé
           </a>
+          <CommandMenu />
         </nav>
 
         <a

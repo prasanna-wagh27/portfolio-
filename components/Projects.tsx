@@ -7,8 +7,10 @@ type Project = {
   name: string;
   meta: string;
   live?: boolean;
+  when: string;
   href?: string;
   hrefLabel?: string;
+  closed?: string;
   body: string;
   stack: { label: string; slug?: string }[];
 };
@@ -18,7 +20,9 @@ const PROJECTS: Project[] = [
     n: "01",
     name: "Tour Experience Marketplace",
     meta: "Lead full-stack engineer, Octogle Technologies",
+    when: "2025 to now",
     live: true,
+    closed: "Client codebase, not public",
     body: "Production SaaS for booking walking tours, boat experiences and local activities, running across Spain and Europe. I led it from an empty repo to production: three role-specific frontends for Customer, Guide and Admin plus a Tour Operator portal, custom JWT auth, Redis caching, BullMQ background jobs and an optimised REST API layer, with a three-person team alongside me.",
     stack: [
       { label: "React.js", slug: "react" },
@@ -37,6 +41,8 @@ const PROJECTS: Project[] = [
     n: "02",
     name: "AI-Powered Recruiter Marketplace",
     meta: "Full-stack engineer, Octogle Technologies",
+    when: "2025",
+    closed: "Client codebase, not public",
     body: "A talent marketplace running four independent platforms: Employer, Recruiter, Candidate and Admin. Employers post vacancies, independent recruiters bid, refer candidates and earn commission. I implemented the permission hierarchies, the job-matching workflows and the candidate pipeline system.",
     stack: [
       { label: "React.js", slug: "react" },
@@ -51,6 +57,7 @@ const PROJECTS: Project[] = [
     n: "03",
     name: "Sendkart",
     meta: "Solo build",
+    when: "2025",
     href: "https://sendkart.in",
     hrefLabel: "sendkart.in",
     body: "A no-code SaaS platform that lets small businesses put a mini website together without writing code. Drag-and-drop components, QR code integration and built-in feedback collection, aimed at SMBs.",
@@ -65,7 +72,7 @@ const PROJECTS: Project[] = [
 
 export default function Projects() {
   return (
-    <Section id="projects" label="Projects">
+    <Section id="projects" label="Projects" soft>
       <div>
         {PROJECTS.map((p, i) => (
           <Reveal key={p.name} delay={i * 60}>

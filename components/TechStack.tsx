@@ -73,7 +73,7 @@ const PRACTICES = ["System design", "Performance optimisation", "RBAC", "Code re
 
 export default function TechStack() {
   return (
-    <Section id="stack" label="Stack" soft>
+    <Section id="stack" label="Stack">
       <div className="space-y-14">
         {GROUPS.map((g, i) => (
           <Reveal key={g.title} delay={i * 50}>

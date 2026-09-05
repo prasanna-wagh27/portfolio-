@@ -28,7 +28,7 @@ const FACTS = [
 
 export default function Education() {
   return (
-    <Section id="more" label="Background" soft>
+    <Section id="more" label="Background">
       <div className="grid gap-14 lg:grid-cols-2">
         <Reveal>
           <div>

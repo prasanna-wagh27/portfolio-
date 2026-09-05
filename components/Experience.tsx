@@ -1,21 +1,22 @@
+import { duration } from "@/lib/duration";
 import Reveal from "./Reveal";
 import Section from "./Section";
 import TechIcon from "./TechIcon";
 
 const JOBS = [
   {
-    date: "Jul 2025 – Present",
+    start: "2025-07-01",
+    end: undefined,
+    date: "Jul 2025 to now",
     title: "Full Stack Developer",
     org: "Octogle Technologies",
-    place: "Pune, Maharashtra",
+    place: "Pune, on site",
     current: true,
     points: [
-      "Led full-stack development of a large-scale tour booking marketplace, live across Spain and Europe, reporting directly to the CEO and guiding three developers across React.js, Node.js and Express.js. The platform serves Tour Operator, Guide, Customer and Admin portals.",
-      "Architected a custom JWT authentication system with role-based access control across three user roles, removing the third-party auth dependency and cutting auth-related support issues by roughly 60%.",
-      "Engineered Redis caching and BullMQ background job queues for booking and notification pipelines, reducing redundant database queries by about 40% and improving average page load time by about 30%.",
-      "Designed and built a recruiter marketplace in React.js, Vite and TypeScript supporting four independent interfaces (Employer, Recruiter, Candidate, Admin) with distinct permission hierarchies and job-matching workflows.",
-      "Delivered RESTful APIs with Node.js, TypeORM and PostgreSQL, and set up CI/CD through Docker and Railway, cutting manual release time from hours to under ten minutes.",
-      "Adopted Claude Code with agentic subagents, lifting feature delivery velocity by roughly 35%, and enforced TypeScript and Git standards across the team.",
+      "Led a tour booking marketplace from an empty repo to production, now running across Spain and Europe. Four role portals for Tour Operator, Guide, Customer and Admin, built with a team of three reporting to me.",
+      "Replaced the third-party auth provider with a custom JWT layer and role-based access control across three roles, which cut auth support issues by roughly 60%.",
+      "Put Redis caching and BullMQ job queues in front of the booking and notification pipelines. Redundant database queries fell about 40% and average page load about 30%.",
+      "Set up CI/CD with Docker and Railway, taking a release from hours of manual work to under ten minutes.",
     ],
     stack: [
       { label: "React", slug: "react" },
@@ -27,17 +28,17 @@ const JOBS = [
     ],
   },
   {
-    date: "Jul 2023 – Oct 2024",
+    start: "2023-07-01",
+    end: "2024-10-01",
+    date: "Jul 2023 to Oct 2024",
     title: "Java Full Stack Developer",
     org: "Averta Strategy Pvt Ltd",
-    place: "Pune, Maharashtra",
+    place: "Pune, on site",
     points: [
-      "Developed and optimised REST APIs for a production healthcare application in Spring Boot, achieving a 40% reduction in API response time through query optimisation and database indexing.",
-      "Integrated JWT authentication and role-based access control, securing endpoints across multiple user roles in a HIPAA-sensitive environment.",
-      "Built dynamic, responsive UI components in Angular and TypeScript, improving cross-device experience and reducing UI-related support tickets by about 25%.",
-      "Co-developed a government university platform serving over 10,000 students across multiple departments, handling concurrent sessions and dynamic content delivery.",
-      "Implemented patient PDF report generation and automated email and SMS notification workflows using Thymeleaf and Spring integrations, saving roughly three hours of manual reporting a week.",
-      "Maintained clean, documented codebases in Git and GitLab across Agile sprint cycles, consistently passing peer review.",
+      "Built and tuned REST APIs for a production healthcare platform in Spring Boot, taking response time down 40% through query optimisation and indexing.",
+      "Secured endpoints with JWT authentication and role-based access control across multiple roles in a HIPAA-sensitive environment.",
+      "Shipped responsive Angular and TypeScript components, which cut UI-related support tickets by about 25%.",
+      "Co-built a government university platform serving over 10,000 students, handling concurrent sessions and dynamic content delivery.",
     ],
     stack: [
       { label: "Spring Boot", slug: "springboot" },
@@ -69,10 +70,11 @@ export default function Experience() {
                 ) : null}
               </div>
 
-              <p className="mt-2 flex flex-wrap items-baseline gap-x-3 text-[15px]">
+              <p className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[15px]">
                 <span className="font-medium text-ink">{job.org}</span>
                 <span className="text-line-2">/</span>
                 <span className="t-meta text-muted">{job.date}</span>
+                <span className="t-meta text-faint">{duration(job.start, job.end)}</span>
                 <span className="text-line-2">/</span>
                 <span className="text-[14px] text-muted">{job.place}</span>
               </p>
