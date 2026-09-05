@@ -50,12 +50,20 @@ for large display accents (3.2:1) and `#0b6ea6` for links and units (5.4:1).
 tracking, `0.92` line-height. Labels 11px at `0.2em`. Figures use a `Stat`
 component that sets the numeral large and hangs the unit smaller off the top.
 
+**Figures.** Each one carries a source line, because a bare "40% faster API
+responses" says nothing about where it came from. Prefixes (`~`, `<`) hang into
+the gutter so the numerals share a left edge across columns, units sit on the
+baseline rather than being raised with a magic margin, and the three rows are
+aligned across columns with `grid-rows-subgrid`. There is deliberately no
+count-up animation: it renders wrong numbers for most of its duration, which is
+not a thing to do to figures on a résumé.
+
 **Motion.** Entrance is a blur-and-rise (`translateY(22px)` plus `blur(7px)` to
 zero) staggered by a `--d` custom property; the masthead runs it on load, the
-rest on an IntersectionObserver. Figures count up once on first view. Tech
-tiles lift with a spring curve and gain a blue ring and glow on hover. A two
-pixel progress bar in the signature gradient tracks reading position. Every
-one of these collapses under `prefers-reduced-motion: reduce`.
+rest on an IntersectionObserver. Tech tiles lift with a spring curve and gain a
+blue ring and glow on hover. A two pixel progress bar in the signature gradient
+tracks reading position. Every one of these collapses under
+`prefers-reduced-motion: reduce`.
 
 **Layout.** Every section is a two column frame: a sticky label rail on the
 left, content on the right.
@@ -71,7 +79,7 @@ app/
 components/
   Nav  Masthead  Experience  TechStack  Projects  Education  Footer
   Section  Stat  TechIcon
-  Reveal  CountUp  ScrollProgress   (client components, with Nav)
+  Reveal  ScrollProgress          (client components, with Nav)
 lib/
   icons.ts        generated brand marks
 scripts/

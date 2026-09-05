@@ -93,14 +93,31 @@ export default function Masthead() {
 
       <div className="mx-auto max-w-5xl px-6 pb-4 sm:px-10">
         <div className="rise" style={{ "--d": "240ms" } as React.CSSProperties}>
-          <div className="panel lift rounded-[26px] px-8 py-9 sm:px-11 sm:py-11">
+          <div className="panel rounded-[26px] px-8 py-9 sm:px-11 sm:py-10">
             <p className="t-label text-faint">Measured on shipped work</p>
-            <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
-              <Stat animate value="40" unit="%" label="faster API responses after query tuning" />
-              <Stat animate value="60" unit="%" prefix="~" label="fewer auth support tickets" />
-              <Stat animate value="30" unit="%" prefix="~" label="quicker average page loads" />
-              <Stat animate value="10" unit="min" prefix="<" label="to release, previously hours" />
-            </div>
+
+            <dl className="mt-9 grid gap-y-11 sm:grid-cols-3 sm:grid-rows-[auto_auto_auto] sm:gap-y-0 sm:[&>*:not(:first-child)]:border-l sm:[&>*:not(:first-child)]:border-line sm:[&>*:not(:first-child)]:pl-8 lg:[&>*:not(:first-child)]:pl-11">
+              <Stat
+                value="40"
+                unit="%"
+                label="faster API responses"
+                source="Healthcare platform · Spring Boot, query tuning and indexing"
+              />
+              <Stat
+                prefix="~"
+                value="60"
+                unit="%"
+                label="fewer auth support tickets"
+                source="Tour marketplace · custom JWT with role-based access"
+              />
+              <Stat
+                prefix="<"
+                value="10"
+                unit="min"
+                label="to ship a release"
+                source="Tour marketplace · Docker and Railway, down from hours"
+              />
+            </dl>
           </div>
         </div>
       </div>

@@ -86,7 +86,15 @@
   .t-name   { font-weight: 600; letter-spacing: -0.045em; line-height: 0.92; text-wrap: balance; }
   .t-h2     { font-weight: 600; letter-spacing: -0.032em; line-height: 1.08; text-wrap: balance; }
   .t-h3     { font-weight: 600; letter-spacing: -0.026em; line-height: 1.2; }
-  .t-label  { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; }
+  .t-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    /* letter-spacing adds a trailing space after the last glyph; pull it back
+       so tracked-out labels optically align with what follows */
+    margin-right: -0.2em;
+  }
   .t-meta   { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0; }
 
   /* ---------- surfaces ----------
