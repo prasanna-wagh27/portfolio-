@@ -54,19 +54,12 @@ what forced the dull shade in the first place.
 tracking, `0.92` line-height. Labels 11px at `0.2em`. Figures use a `Stat`
 component that sets the numeral large and hangs the unit smaller off the top.
 
-**Figures.** They appear once, in the masthead, and each carries a source line,
-because a bare "40% faster API responses" says nothing about where it came
-from. Projects deliberately carry no figures: the per-project blocks said
-things like "4 independent interfaces" and "3 permission tiers per platform",
-which is filler, and the lead project's block repeated the masthead numbers
-verbatim. Prefixes (`~`, `<`) hang into
-the gutter so the numerals share a left edge across columns, units sit on the
-baseline rather than being raised with a magic margin, and the three rows are
-aligned across columns with `grid-rows-subgrid`. Below `sm` the numeral moves
-into a fixed 6rem column beside the text, which turns a six-line block into
-three and keeps every label on one left edge. There is deliberately no
-count-up animation: it renders wrong numbers for most of its duration, which is
-not a thing to do to figures on a résumé.
+**No figure displays.** There is no stat panel and no big-numeral treatment
+anywhere on the site. Those blocks are the dashboard look, and the numbers they
+carried already appear in the experience bullets with the context that makes
+them mean something. Stating the same outcome three times in three formats is
+what makes a page read as generated. The metrics live in one place, in prose,
+where a recruiter reads them.
 
 **Motion.** Entrance is a blur-and-rise (`translateY(22px)` plus `blur(7px)` to
 zero) staggered by a `--d` custom property; the masthead runs it on load, the
@@ -88,7 +81,7 @@ app/
   icon.svg        favicon
 components/
   Nav  Masthead  Experience  TechStack  Projects  Education  Footer
-  Section  Stat  TechIcon
+  Section  TechIcon
   Reveal  ScrollProgress          (client components, with Nav)
 lib/
   icons.ts        generated brand marks

@@ -111,13 +111,6 @@
       linear-gradient(180deg, rgba(255, 255, 255, 0) 82%, #ffffff 100%),
       radial-gradient(126% 70% at 50% 0%, #ffffff 0%, #f4fbfe 40%, #e7f6fe 100%);
   }
-  .panel {
-    background: linear-gradient(180deg, #ffffff 0%, #f7fcff 55%, #eef8fe 100%);
-    box-shadow:
-      0 4px 10px -2px rgba(0, 0, 0, 0.05),
-      0 2px 2px -1px rgba(0, 0, 0, 0.06),
-      0 0 0 1px rgba(26, 160, 230, 0.12);
-  }
   .tile {
     background: #ffffff;
     box-shadow:
@@ -213,16 +206,6 @@
     animation: sheen 9s linear infinite;
   }
 
-  .lift {
-    transition:
-      transform 0.35s var(--ease-spring),
-      box-shadow 0.35s var(--ease-soft);
-  }
-  .lift:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 35px -12px rgba(27, 160, 230, 0.45);
-  }
-
   .row-hover {
     transition: background-color 0.4s var(--ease-soft);
   }
@@ -242,6 +225,6 @@
       filter: none !important;
     }
     .accent-dot { color: var(--color-brand-large); }
-    .lift:hover, .tile:hover, .group:hover .tile { transform: none; }
+    .tile:hover, .group:hover .tile { transform: none; }
   }
 }

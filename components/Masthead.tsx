@@ -1,4 +1,3 @@
-import Stat from "./Stat";
 
 const LINKS = [
   { label: "prasannawagh146@gmail.com", href: "mailto:prasannawagh146@gmail.com" },
@@ -10,7 +9,7 @@ const LINKS = [
 export default function Masthead() {
   return (
     <header id="top" className="wash-top relative scroll-mt-20">
-      <div className="mx-auto max-w-5xl px-6 pb-14 pt-20 sm:px-10 sm:pb-16 sm:pt-28">
+      <div className="mx-auto max-w-5xl px-6 pb-20 pt-20 sm:px-10 sm:pb-28 sm:pt-28">
         <div className="rise">
           <p className="t-label flex items-center gap-2.5 text-muted">
             <span className="dot-live h-[6px] w-[6px] rounded-full bg-brand" />
@@ -91,36 +90,6 @@ export default function Masthead() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-5xl px-6 pb-4 sm:px-10">
-        <div className="rise" style={{ "--d": "240ms" } as React.CSSProperties}>
-          <div className="panel rounded-[26px] px-8 py-9 sm:px-11 sm:py-10">
-            <p className="t-label text-faint">Measured on shipped work</p>
-
-            <dl className="mt-9 grid gap-y-11 sm:grid-cols-3 sm:grid-rows-[auto_auto_auto] sm:gap-y-0 sm:[&>*:not(:first-child)]:border-l sm:[&>*:not(:first-child)]:border-line sm:[&>*:not(:first-child)]:pl-8 lg:[&>*:not(:first-child)]:pl-11">
-              <Stat
-                value="40"
-                unit="%"
-                label="faster API responses"
-                source="Healthcare platform · Spring Boot, query tuning and indexing"
-              />
-              <Stat
-                prefix="~"
-                value="60"
-                unit="%"
-                label="fewer auth support tickets"
-                source="Tour marketplace · custom JWT with role-based access"
-              />
-              <Stat
-                prefix="<"
-                value="10"
-                unit="min"
-                label="to ship a release"
-                source="Tour marketplace · Docker and Railway, down from hours"
-              />
-            </dl>
-          </div>
-        </div>
-      </div>
     </header>
   );
 }
