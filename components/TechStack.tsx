@@ -88,7 +88,7 @@ export default function TechStack() {
                     <span className="tile grid h-10 w-10 flex-none place-items-center rounded-xl">
                       <TechIcon slug={it.slug} />
                     </span>
-                    <span className="text-[14.5px] tracking-[-0.015em] text-ink-2 transition-colors duration-300 group-hover:text-brand-text">{it.label}</span>
+                    <span className="text-[14.5px] tracking-[-0.015em] text-ink-2 transition-colors duration-300 group-hover:text-link">{it.label}</span>
                   </li>
                 ))}
               </ul>

@@ -43,18 +43,28 @@ Three things make that system read as crisp, and all three are now in place:
 3. **One saturated element.** The 191deg gradient appears only on the scroll
    progress bar and the period after the name.
 
-`#1aa0e6` on white is 2.9:1, so two derived blues carry the text: `#1595db`
-for large display accents (3.2:1) and `#0b6ea6` for links and units (5.4:1).
+`#1aa0e6` on white is 2.9:1, so text uses derived blues: `#1290db` for display
+accents and units (3.4:1), and `#0077c2` for links (4.7:1). The link blue is
+fully saturated azure rather than the desaturated `#0b6ea6` used earlier, which
+read as grey-blue and dulled the whole page. Company names are set in ink, not
+blue: a company name is not a link, and putting small blue text everywhere was
+what forced the dull shade in the first place.
 
 **Type.** Geist, self-hosted. Name at `clamp(52px, 10.5vw, 116px)`, `-0.045em`
 tracking, `0.92` line-height. Labels 11px at `0.2em`. Figures use a `Stat`
 component that sets the numeral large and hangs the unit smaller off the top.
 
-**Figures.** Each one carries a source line, because a bare "40% faster API
-responses" says nothing about where it came from. Prefixes (`~`, `<`) hang into
+**Figures.** They appear once, in the masthead, and each carries a source line,
+because a bare "40% faster API responses" says nothing about where it came
+from. Projects deliberately carry no figures: the per-project blocks said
+things like "4 independent interfaces" and "3 permission tiers per platform",
+which is filler, and the lead project's block repeated the masthead numbers
+verbatim. Prefixes (`~`, `<`) hang into
 the gutter so the numerals share a left edge across columns, units sit on the
 baseline rather than being raised with a magic margin, and the three rows are
-aligned across columns with `grid-rows-subgrid`. There is deliberately no
+aligned across columns with `grid-rows-subgrid`. Below `sm` the numeral moves
+into a fixed 6rem column beside the text, which turns a six-line block into
+three and keeps every label on one left edge. There is deliberately no
 count-up animation: it renders wrong numbers for most of its duration, which is
 not a thing to do to figures on a résumé.
 

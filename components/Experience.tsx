@@ -70,7 +70,7 @@ export default function Experience() {
               </div>
 
               <p className="mt-2 flex flex-wrap items-baseline gap-x-3 text-[15px]">
-                <span className="font-medium text-brand-text">{job.org}</span>
+                <span className="font-medium text-ink">{job.org}</span>
                 <span className="text-line-2">/</span>
                 <span className="t-meta text-muted">{job.date}</span>
                 <span className="text-line-2">/</span>

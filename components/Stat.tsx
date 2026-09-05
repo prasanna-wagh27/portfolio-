@@ -1,9 +1,13 @@
 /**
- * A figure set the way a magazine sets one.
+ * A figure with its claim and its source.
  *
- * Prefix and unit sit on the SAME baseline as the numeral at a smaller size,
- * which is how "85%" is actually set. The previous version raised them with
- * arbitrary margin-top values, which left the four columns visibly ragged.
+ * Desktop: numeral, label and source stack in three subgrid rows, so the
+ * baselines line up across columns no matter how the text wraps.
+ * Mobile: the numeral moves into its own column beside the text, which turns
+ * a six-line block into three and keeps the panel from running down the page.
+ *
+ * Prefix and unit sit on the numeral's baseline at a smaller size, and the
+ * prefix hangs into the gutter so numerals share a left edge.
  */
 export default function Stat({
   value,
@@ -11,50 +15,49 @@ export default function Stat({
   prefix,
   label,
   source,
-  size = "lg",
 }: {
   value: string;
   unit?: string;
   prefix?: string;
   label: string;
   source?: string;
-  size?: "lg" | "sm";
 }) {
-  const numeral = size === "lg" ? "text-[clamp(40px,4.4vw,54px)]" : "text-[32px]";
-  const affix = size === "lg" ? "text-[clamp(19px,2vw,24px)]" : "text-[16px]";
-
   return (
-    <div className="grid gap-0 sm:row-span-3 sm:grid-rows-subgrid">
+    <div className="grid grid-cols-[6rem_1fr] items-baseline gap-x-3.5 sm:grid-cols-1 sm:row-span-3 sm:grid-rows-subgrid">
       <p className="flex items-baseline text-ink">
-        {/* the prefix hangs into the gutter so 40, 60 and 10 share a left edge */}
-        <span className={`relative ${numeral} font-semibold leading-[1] tracking-[-0.045em]`}>
+        <span className="relative text-[34px] font-semibold leading-[1] tracking-[-0.045em] sm:text-[clamp(40px,4.4vw,54px)]">
           {prefix ? (
             <span
               aria-hidden="true"
-              className={`absolute bottom-[0.02em] right-full mr-[0.05em] ${affix} font-medium tracking-[-0.02em] text-faint`}
+              className="absolute bottom-[0.02em] right-full mr-[0.05em] text-[15px] font-medium tracking-[-0.02em] text-faint sm:text-[clamp(19px,2vw,24px)]"
             >
               {prefix}
             </span>
           ) : null}
-          {prefix ? <span className="sr-only">{prefix === "~" ? "about " : "under "}</span> : null}
+          {prefix ? (
+            <span className="sr-only">{prefix === "~" ? "about " : "under "}</span>
+          ) : null}
           {value}
         </span>
         {unit ? (
-          <span className={`${affix} ml-[0.08em] font-medium tracking-[-0.02em] text-brand-text`}>
+          <span className="ml-[0.08em] text-[15px] font-medium tracking-[-0.02em] text-brand-large sm:text-[clamp(19px,2vw,24px)]">
             {unit}
           </span>
         ) : null}
       </p>
 
-      <p className="mt-3 max-w-[24ch] text-[15px] font-medium leading-[1.4] tracking-[-0.015em] text-ink-2">
-        {label}
-      </p>
-
-      {source ? (
-        <p className="t-meta mt-2.5 max-w-[36ch] leading-[1.55] text-muted">{source}</p>
-      ) : (
-        <span aria-hidden="true" />
-      )}
+      <div className="sm:contents">
+        <p className="max-w-[26ch] text-[15px] font-medium leading-[1.4] tracking-[-0.015em] text-ink-2 sm:mt-3">
+          {label}
+        </p>
+        {source ? (
+          <p className="t-meta mt-1.5 max-w-[38ch] text-[11.5px] leading-[1.55] text-muted sm:mt-2.5 sm:text-[12.5px]">
+            {source}
+          </p>
+        ) : (
+          <span aria-hidden="true" />
+        )}
+      </div>
     </div>
   );
 }

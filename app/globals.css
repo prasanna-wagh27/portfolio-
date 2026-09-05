@@ -29,9 +29,11 @@
   --color-paper: #ffffff;
 
   /* brand, straight from the reference */
-  --color-brand: #1aa0e6;        /* non-text: glows, rings, dots, gradients */
-  --color-brand-large: #1595db;  /* large display accents, 3.2:1 */
-  --color-brand-text: #0b6ea6;   /* links and units, 5.4:1 */
+  --color-brand: #1aa0e6;        /* the reference blue: glows, rings, dots, gradients */
+  --color-brand-large: #1290db;  /* display accents and units, 3.4:1 */
+  --color-link: #0077c2;         /* links only. fully saturated azure at 4.7:1,
+                                    where the previous #0b6ea6 was desaturated
+                                    and read as grey-blue */
   --color-cyan: #62e9ff;
   --color-violet: #886be0;
   --color-tint: #e7f6fe;
@@ -162,7 +164,7 @@
     padding-bottom: 1px;
     transition: color 0.25s var(--ease-soft), background-size 0.35s var(--ease-soft);
   }
-  .link:hover { color: var(--color-brand-text); background-size: 100% 1.5px; }
+  .link:hover { color: var(--color-brand); background-size: 100% 1.5px; }
 
   .link-quiet {
     background-image: linear-gradient(var(--color-brand), var(--color-brand));
@@ -171,7 +173,7 @@
     background-size: 0% 1px;
     transition: color 0.25s var(--ease-soft), background-size 0.4s var(--ease-soft);
   }
-  .link-quiet:hover { color: var(--color-brand-text); background-size: 100% 1px; }
+  .link-quiet:hover { color: var(--color-link); background-size: 100% 1px; }
 
   /* ---------- motion ---------- */
   @keyframes rise {

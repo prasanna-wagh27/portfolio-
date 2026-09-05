@@ -1,20 +1,15 @@
 import Reveal from "./Reveal";
 import Section from "./Section";
-import Stat from "./Stat";
 import TechIcon from "./TechIcon";
-
-type ProjectStat = { value: string; unit?: string; prefix?: string; label: string };
 
 type Project = {
   n: string;
   name: string;
   meta: string;
   live?: boolean;
-  featured?: boolean;
   href?: string;
   hrefLabel?: string;
   body: string;
-  stats: ProjectStat[];
   stack: { label: string; slug?: string }[];
 };
 
@@ -24,14 +19,7 @@ const PROJECTS: Project[] = [
     name: "Tour Experience Marketplace",
     meta: "Lead full-stack engineer, Octogle Technologies",
     live: true,
-    featured: true,
     body: "Production SaaS for booking walking tours, boat experiences and local activities, running across Spain and Europe. I led it from an empty repo to production: three role-specific frontends for Customer, Guide and Admin plus a Tour Operator portal, custom JWT auth, Redis caching, BullMQ background jobs and an optimised REST API layer, with a three-person team alongside me.",
-    stats: [
-      { value: "60", unit: "%", prefix: "~", label: "fewer auth support issues" },
-      { value: "40", unit: "%", prefix: "~", label: "fewer redundant queries" },
-      { value: "30", unit: "%", prefix: "~", label: "faster page loads" },
-      { value: "10", unit: "min", prefix: "<", label: "release time" },
-    ],
     stack: [
       { label: "React.js", slug: "react" },
       { label: "Node.js", slug: "nodedotjs" },
@@ -50,10 +38,6 @@ const PROJECTS: Project[] = [
     name: "AI-Powered Recruiter Marketplace",
     meta: "Full-stack engineer, Octogle Technologies",
     body: "A talent marketplace running four independent platforms: Employer, Recruiter, Candidate and Admin. Employers post vacancies, independent recruiters bid, refer candidates and earn commission. I implemented the permission hierarchies, the job-matching workflows and the candidate pipeline system.",
-    stats: [
-      { value: "4", label: "independent interfaces" },
-      { value: "3", label: "permission tiers per platform" },
-    ],
     stack: [
       { label: "React.js", slug: "react" },
       { label: "Vite", slug: "vite" },
@@ -70,10 +54,6 @@ const PROJECTS: Project[] = [
     href: "https://sendkart.in",
     hrefLabel: "sendkart.in",
     body: "A no-code SaaS platform that lets small businesses put a mini website together without writing code. Drag-and-drop components, QR code integration and built-in feedback collection, aimed at SMBs.",
-    stats: [
-      { value: "0", label: "lines of code for the customer" },
-      { value: "3", label: "steps from signup to live" },
-    ],
     stack: [
       { label: "Next.js", slug: "nextdotjs" },
       { label: "React", slug: "react" },
@@ -115,7 +95,7 @@ export default function Projects() {
                           href={p.href}
                           target="_blank"
                           rel="noopener"
-                          className="link font-medium text-brand-text"
+                          className="link font-medium text-link"
                         >
                           {p.hrefLabel}
                         </a>
@@ -129,33 +109,8 @@ export default function Projects() {
                 {p.body}
               </p>
 
-              <div className={`mt-9 sm:pl-[52px]`}>
-                <div
-                  className={
-                    p.featured
-                      ? "panel rounded-[22px] px-7 py-8 sm:px-9"
-                      : ""
-                  }
-                >
-                  <div
-                    className={`grid gap-x-8 gap-y-9 sm:grid-rows-[auto_auto_auto] ${
-                      p.stats.length > 2 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2"
-                    }`}
-                  >
-                    {p.stats.map((s) => (
-                      <Stat
-                        key={s.label}
-                        value={s.value}
-                        unit={s.unit}
-                        prefix={s.prefix}
-                        label={s.label}
-                        size={p.featured ? "lg" : "sm"}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <div className="mt-8 sm:pl-[52px]">
+                <ul className="flex flex-wrap items-center gap-x-6 gap-y-3">
                   {p.stack.map((t) => (
                     <li key={t.label} className="inline-flex items-center gap-2 text-[13px] text-muted">
                       <TechIcon slug={t.slug} />
