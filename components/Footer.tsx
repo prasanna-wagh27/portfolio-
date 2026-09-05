@@ -1,10 +1,15 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-line bg-white">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-5 py-8 text-[13px] text-muted sm:flex-row sm:px-8">
-        <span>© {new Date().getFullYear()} Prasanna Wagh</span>
-        <span className="font-mono text-[12px]">Pune, Maharashtra, India</span>
-        <span>Open to full-stack roles · Pune (hybrid)</span>
+    <footer className="wash-soft">
+      <div className="mx-auto max-w-5xl px-6 sm:px-10">
+        <hr className="rule" />
+        <div className="flex flex-col gap-3 py-9 text-[13px] text-muted sm:flex-row sm:items-center sm:justify-between">
+          <span>© {new Date().getFullYear()} Prasanna Wagh</span>
+          <span className="t-meta">Pune, Maharashtra, India</span>
+          <a href="#top" className="link-quiet self-start text-[13px] sm:self-auto">
+            Back to top
+          </a>
+        </div>
       </div>
     </footer>
   );

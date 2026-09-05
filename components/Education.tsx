@@ -1,20 +1,17 @@
 import Reveal from "./Reveal";
 import Section from "./Section";
 
-const EDUCATION = [
+const ROWS = [
   {
     title: "B.Tech, Mechanical Engineering",
     org: "University of Mumbai",
-    meta: "2018 — 2022 · CGPA 7.77 / 10",
+    meta: "2018 – 2022 · CGPA 7.77 / 10",
   },
   {
-    title: "HSC (Higher Secondary Certificate)",
+    title: "Higher Secondary Certificate",
     org: "Maharashtra State Board",
     meta: "2018 · 82.3%",
   },
-];
-
-const CERTS = [
   {
     title: "Full Stack Java Development",
     org: "Vibrantminds Technologies Pvt. Ltd.",
@@ -22,40 +19,26 @@ const CERTS = [
   },
 ];
 
-const OTHER = [
-  { k: "Location", v: "Pune, Maharashtra, India" },
-  { k: "Work setup", v: "Hybrid — Pune" },
-  { k: "Open to", v: "Full-stack & product engineering roles" },
+const FACTS = [
+  { k: "Based in", v: "Pune, Maharashtra" },
+  { k: "Work setup", v: "Hybrid" },
+  { k: "Open to", v: "Full-stack and product engineering roles" },
   { k: "Languages", v: "English, Hindi, Marathi" },
 ];
 
 export default function Education() {
   return (
-    <Section id="more" eyebrow="Education & other info" title="The rest of it." tinted>
-      <div className="grid gap-4 lg:grid-cols-2">
+    <Section id="more" label="Background" soft>
+      <div className="grid gap-14 lg:grid-cols-2">
         <Reveal>
-          <div className="h-full rounded-2xl border border-line bg-white p-6 sm:p-7">
-            <h3 className="eyebrow text-muted">Education</h3>
-            <ul className="mt-5 space-y-5">
-              {EDUCATION.map((e) => (
-                <li key={e.title}>
-                  <p className="text-[16.5px] font-semibold tracking-[-0.022em] text-ink">
-                    {e.title}
-                  </p>
-                  <p className="mt-1 text-[14.5px] text-brand">{e.org}</p>
-                  <p className="mt-0.5 font-mono text-[12.5px] text-muted">{e.meta}</p>
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="eyebrow mt-8 border-t border-line pt-6 text-muted">Certification</h3>
-            <ul className="mt-5 space-y-5">
-              {CERTS.map((c) => (
-                <li key={c.title}>
-                  <p className="text-[16.5px] font-semibold tracking-[-0.022em] text-ink">
-                    {c.title}
-                  </p>
-                  <p className="mt-1 text-[14.5px] text-brand">{c.org}</p>
+          <div>
+            <h3 className="t-label text-faint">Education and certification</h3>
+            <ul className="mt-6">
+              {ROWS.map((r) => (
+                <li key={r.title} className="border-b border-line py-5 last:border-0">
+                  <p className="text-[16.5px] font-medium tracking-[-0.022em] text-ink">{r.title}</p>
+                  <p className="mt-1 text-[14.5px] text-body">{r.org}</p>
+                  <p className="t-meta mt-1.5 text-muted">{r.meta}</p>
                 </li>
               ))}
             </ul>
@@ -63,35 +46,51 @@ export default function Education() {
         </Reveal>
 
         <Reveal delay={70}>
-          <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-6 sm:p-7">
-            <h3 className="eyebrow text-muted">Other info</h3>
-            <dl className="mt-5">
-              {OTHER.map((o) => (
+          <div className="flex h-full flex-col">
+            <h3 className="t-label text-faint">Details</h3>
+            <dl className="mt-6">
+              {FACTS.map((f) => (
                 <div
-                  key={o.k}
-                  className="flex items-baseline justify-between gap-5 border-b border-line py-3.5 last:border-0"
+                  key={f.k}
+                  className="flex items-baseline justify-between gap-6 border-b border-line py-5 last:border-0"
                 >
-                  <dt className="flex-none text-[14px] text-muted">{o.k}</dt>
-                  <dd className="text-right text-[14.5px] font-medium text-ink">{o.v}</dd>
+                  <dt className="flex-none text-[14px] text-muted">{f.k}</dt>
+                  <dd className="text-right text-[15px] font-medium text-ink">{f.v}</dd>
                 </div>
               ))}
             </dl>
 
-            <div className="mt-auto pt-7">
-              <p className="text-[15.5px] leading-[1.6] text-body">
-                The fastest way to reach me is email — I reply the same day.
+            <div className="mt-12 lg:mt-auto lg:pt-12">
+              <p className="t-h3 max-w-[18ch] text-[clamp(22px,2.6vw,28px)] text-ink">
+                If the role fits, write to me.
               </p>
-              <div className="mt-5 flex flex-wrap gap-3">
+              <p className="mt-4 max-w-[44ch] text-[15.5px] leading-[1.6] text-body">
+                Send the job description and I will tell you honestly whether I am the right
+                engineer for it. I reply the same day.
+              </p>
+              <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-4">
                 <a
                   href="mailto:prasannawagh146@gmail.com"
-                  className="inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-[14.5px] font-medium text-white transition-transform hover:-translate-y-px"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3 text-[15px] font-medium text-white transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_16px_30px_-18px_rgba(13,20,24,0.9)]"
                 >
                   prasannawagh146@gmail.com
+                  <svg
+                    viewBox="0 0 16 16"
+                    className="h-3.5 w-3.5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[3px]"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 8h10m0 0-3.6-3.6M13 8l-3.6 3.6" />
+                  </svg>
                 </a>
                 <a
                   href="/Prasanna-Wagh-Fullstack-Engineer.pdf"
                   download
-                  className="inline-flex items-center rounded-full border border-line-2 px-5 py-2.5 text-[14.5px] font-medium text-ink transition-colors hover:bg-tint"
+                  className="link text-[15px] font-medium text-ink-2"
                 >
                   Résumé (PDF)
                 </a>

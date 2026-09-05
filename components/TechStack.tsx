@@ -16,7 +16,6 @@ const GROUPS: { title: string; items: Item[] }[] = [
       { label: "Tailwind CSS", slug: "tailwindcss" },
       { label: "Material UI", slug: "mui" },
       { label: "React Query", slug: "reactquery" },
-      { label: "Zustand" },
       { label: "Angular", slug: "angular" },
     ],
   },
@@ -29,21 +28,18 @@ const GROUPS: { title: string; items: Item[] }[] = [
       { label: "JWT auth", slug: "jsonwebtokens" },
       { label: "Spring Boot", slug: "springboot" },
       { label: "Java", slug: "openjdk" },
-      { label: "BullMQ" },
-      { label: "REST API design" },
     ],
   },
   {
-    title: "Databases",
+    title: "Data",
     items: [
       { label: "PostgreSQL", slug: "postgresql" },
       { label: "MySQL", slug: "mysql" },
-      { label: "Redis — cache & queues", slug: "redis" },
-      { label: "Indexing & query tuning" },
+      { label: "Redis", slug: "redis" },
     ],
   },
   {
-    title: "DevOps & cloud",
+    title: "Infrastructure",
     items: [
       { label: "Docker", slug: "docker" },
       { label: "Vercel", slug: "vercel" },
@@ -55,61 +51,70 @@ const GROUPS: { title: string; items: Item[] }[] = [
     ],
   },
   {
-    title: "AI & tooling",
+    title: "AI tooling",
     items: [
       { label: "Claude Code", slug: "claude" },
-      { label: "Agentic workflows" },
-      { label: "Subagents" },
-    ],
-  },
-  {
-    title: "Practices",
-    items: [
-      { label: "System design" },
-      { label: "Performance optimisation" },
-      { label: "RBAC" },
-      { label: "Code review" },
-      { label: "Agile / Scrum" },
     ],
   },
 ];
 
+/* No official brand mark exists for these, so they are set as text rather than
+   given an invented logo. */
+const ALSO = [
+  "Zustand",
+  "BullMQ",
+  "REST API design",
+  "Indexing and query tuning",
+  "Agentic workflows",
+  "Subagents",
+];
+
+const PRACTICES = ["System design", "Performance optimisation", "RBAC", "Code review", "Agile / Scrum"];
+
 export default function TechStack() {
   return (
-    <Section id="stack" eyebrow="Tech stack" title="What I build with." tinted>
-      <div className="space-y-8">
+    <Section id="stack" label="Stack" soft>
+      <div className="space-y-14">
         {GROUPS.map((g, i) => (
-          <Reveal key={g.title} delay={i * 40}>
-            <div className="grid gap-3 sm:grid-cols-[168px_1fr] sm:gap-8">
-              <h3 className="eyebrow pt-2 text-muted">{g.title}</h3>
-              <ul className="flex flex-wrap gap-2">
+          <Reveal key={g.title} delay={i * 50}>
+            <div>
+              <div className="flex items-center gap-4">
+                <h3 className="t-label flex-none text-faint">{g.title}</h3>
+                <hr className="rule-tight flex-1" />
+              </div>
+              <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-4">
                 {g.items.map((it) => (
-                  <li
-                    key={it.label}
-                    className="inline-flex items-center gap-2.5 rounded-xl border border-line bg-white px-3.5 py-2.5 text-[14px] font-medium tracking-[-0.01em] text-ink"
-                  >
-                    <TechIcon slug={it.slug} label={it.label} />
-                    {it.label}
+                  <li key={it.label} className="group flex items-center gap-3">
+                    <span className="grid h-9 w-9 flex-none place-items-center rounded-xl bg-white shadow-[0_1px_2px_rgba(9,40,60,0.05),0_6px_16px_-12px_rgba(9,40,60,0.4)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[2px]">
+                      <TechIcon slug={it.slug} />
+                    </span>
+                    <span className="text-[14.5px] tracking-[-0.015em] text-ink-2">{it.label}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </Reveal>
         ))}
-      </div>
 
-      <p className="mt-10 text-[13px] text-muted">
-        Brand marks come from the{" "}
-        <a
-          href="https://simpleicons.org"
-          target="_blank"
-          rel="noopener"
-          className="underline decoration-line-2 underline-offset-4 hover:decoration-brand"
-        >
-          Simple Icons
-        </a>{" "}
-        set. Tools without an official mark are shown as plain labels.
-      </p>
+        <Reveal delay={280}>
+          <div className="grid gap-10 sm:grid-cols-2">
+            <div>
+              <div className="flex items-center gap-4">
+                <h3 className="t-label flex-none text-faint">Also working with</h3>
+                <hr className="rule-tight flex-1" />
+              </div>
+              <p className="mt-5 text-[15.5px] leading-[1.7] text-body">{ALSO.join(" · ")}</p>
+            </div>
+            <div>
+              <div className="flex items-center gap-4">
+                <h3 className="t-label flex-none text-faint">Practices</h3>
+                <hr className="rule-tight flex-1" />
+              </div>
+              <p className="mt-5 text-[15.5px] leading-[1.7] text-body">{PRACTICES.join(" · ")}</p>
+            </div>
+          </div>
+        </Reveal>
+      </div>
     </Section>
   );
 }

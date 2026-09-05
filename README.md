@@ -21,32 +21,30 @@ plain text chip rather than an invented logo.
 
 ## Design system
 
-Adapted from [lightwork.co](https://www.lightwork.co/): a vivid azure→cyan gradient hero,
-light-blue tinted card surfaces, one near-black statement band, and Geist type with
-tight display tracking.
+Three rules the CSS enforces, all of them lifted from studying lightwork.co
+rather than from a component library:
 
-| Role | Value |
-| --- | --- |
-| Hero / CTA gradient | `#065a9b` → `#0a6cb0` → `#1288d8` → `#6fd3f4` |
-| Brand | `#0e86d6` (bright `#33b4ec`, deep `#0763a8`, ink `#06466f`) |
-| Tinted surface | `#e7f6fe` / `#f3fbff` |
-| Night band | `#04121f` with `#5cc9f6` accent |
-| Ink / body / muted | `#0a1420` / `#41545f` / `#6d7f88` |
-| Positive / negative | `#12805a` / `#c23a2c` |
+1. **Surfaces are gradients with a soft shadow, never 1px boxes.** `.panel` is a
+   158deg white to pale blue gradient over a two-stop shadow. There is no card
+   border anywhere on the page.
+2. **Rules fade at the ends.** `.rule` is a gradient, transparent to `#e2e8ec` to
+   transparent, so section breaks do not read as table lines.
+3. **One accent.** `#0a7ad0`, used on the period after the name, the label dots,
+   the units beside figures, and links on hover. Everything else is the ink ramp.
 
-Tokens live in `app/globals.css` under `@theme`, so they are available as Tailwind
-utilities (`text-brand`, `bg-tint`, `text-cyan-on-night`, …).
+The masthead sits on `.wash`, two overlapping radial gradients over white, so the
+page opens with atmosphere instead of a saturated hero band.
 
-**Section rhythm**, matching the reference: a small blue dot + wide-tracked uppercase
-eyebrow → a centred display headline → a supporting paragraph → a data module
-(stat cards, project cards with an oversized metric rail, before/after panels).
+**Type.** Geist, self-hosted. The name is set at `clamp(52px, 10.5vw, 116px)` with
+`-0.045em` tracking and `0.92` line-height. Body runs 16 to 17px at 1.6 to 1.65.
+Labels are 11px at `0.2em` tracking, uppercase. Figures use a `Stat` component
+that sets the numeral large and drops the unit to a smaller size hung off the top,
+the way the reference sets `85%`. Tabular numerals throughout, `text-wrap: balance`
+on headings and `pretty` on paragraphs.
 
-### One deliberate deviation
-
-The reference puts white text on light cyan at roughly 2.6:1. That fails WCAG AA. This
-site keeps the same look but deepens the gradient's upper stops and lays a soft
-`rgba(2,38,68,·)` scrim over the text zone, so hero and CTA copy sits at **≈5.7:1** —
-AA for body text, comfortably past AA for the display sizes.
+**Layout.** Every section is a two column frame: a sticky label rail on the left,
+content on the right. That keeps the page reading as a document rather than a
+stack of centred marketing blocks.
 
 ## Structure
 
@@ -57,8 +55,8 @@ app/
   globals.css     design tokens + utilities
   icon.svg        favicon
 components/
-  Nav  Header  Experience  TechStack  Projects  Education  Footer
-  Section  TechIcon
+  Nav  Masthead  Experience  TechStack  Projects  Education  Footer
+  Section  Stat  TechIcon
   Reveal          (with Nav, the only client components)
 lib/
   icons.ts        generated brand marks

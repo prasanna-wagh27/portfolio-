@@ -1,140 +1,185 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Design system — adapted from lightwork.co
-   Vivid azure→cyan gradients, light-blue tinted surfaces,
-   one near-black band, Geist type, generous rounding.
-   Gradient stops are deepened vs. the reference so white text
-   clears WCAG AA instead of sitting at ~2.6:1.
+   Prasanna Wagh: type and surface system.
+
+   Rules this file enforces:
+   1. Surfaces are gradients with soft shadow, never 1px boxes.
+   2. Rules fade at both ends, they are not flat hairlines.
+   3. One accent blue. Everything else is ink and neutrals.
+   4. A single 4px spacing rhythm and a real type scale.
    ============================================================ */
 
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* ink */
-  --color-ink: #0a1420;
-  --color-ink-2: #0f2233;
-  --color-body: #41545f;
-  --color-muted: #6d7f88;
+  /* ink ramp */
+  --color-ink: #0d1418;
+  --color-ink-2: #1b2429;
+  --color-body: #4b5862;
+  --color-muted: #78848c;
+  --color-faint: #9aa5ac;
 
-  /* brand */
-  --color-brand: #0e86d6;
-  --color-brand-deep: #0763a8;
-  --color-brand-bright: #33b4ec;
-  --color-brand-cyan: #7fdcf6;
-  --color-brand-ink: #06466f;
-
-  /* surfaces */
-  --color-tint: #e7f6fe;
-  --color-tint-2: #f3fbff;
+  /* structure */
+  --color-line: #e7ebee;
+  --color-line-2: #d6dde1;
   --color-paper: #ffffff;
-  --color-haze: #fafbfc;
-  --color-line: #e2e8ec;
-  --color-line-2: #cfdbe3;
 
-  /* night band */
-  --color-night: #04121f;
-  --color-night-2: #0a2334;
-  --color-night-line: #16394f;
-  --color-cyan-on-night: #5cc9f6;
+  /* accent */
+  --color-brand: #0a7ad0;
+  --color-brand-deep: #075c9f;
+  --color-brand-soft: #5cc0ee;
+  --color-tint: #eef7fd;
+  --color-tint-2: #f7fbfe;
 
   /* semantic */
-  --color-pos: #12805a;
-  --color-pos-tint: #e6f5ef;
-  --color-neg: #c23a2c;
-  --color-neg-tint: #fceeed;
+  --color-pos: #0f7a55;
+  --color-pos-tint: #e8f4ef;
 
-  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
   }
+
   body {
     background: var(--color-paper);
     color: var(--color-ink);
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: -0.011em;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv11", "ss01";
+    font-variant-numeric: tabular-nums;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
+
+  p { text-wrap: pretty; }
+
   ::selection {
-    background: var(--color-brand);
-    color: #fff;
+    background: color-mix(in srgb, var(--color-brand) 18%, transparent);
+    color: var(--color-ink);
   }
+
   :focus-visible {
     outline: 2px solid var(--color-brand);
-    outline-offset: 3px;
-    border-radius: 6px;
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 }
 
 @layer utilities {
-  /* display type — tight tracking, like the reference */
-  .display {
+  /* ---- type ---- */
+  .t-name {
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 0.92;
+    text-wrap: balance;
+  }
+  .t-h2 {
+    font-weight: 600;
     letter-spacing: -0.032em;
-    line-height: 1.04;
-    font-weight: 600;
+    line-height: 1.08;
     text-wrap: balance;
   }
-  .display-xl {
-    letter-spacing: -0.038em;
-    line-height: 1.0;
+  .t-h3 {
     font-weight: 600;
-    text-wrap: balance;
+    letter-spacing: -0.026em;
+    line-height: 1.2;
   }
-
-  .eyebrow {
-    font-size: 11.5px;
+  .t-label {
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
+    font-feature-settings: "cv11";
+  }
+  .t-meta {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0;
   }
 
-  /* hero + CTA gradient */
-  .grad-hero {
+  /* ---- surfaces ---- */
+  .wash {
     background:
-      /* scrim: keeps white text at AA over the lighter lower stops */
-      linear-gradient(180deg, rgba(2, 38, 68, 0.28) 0%, rgba(2, 38, 68, 0.14) 55%, rgba(2, 38, 68, 0) 78%),
-      radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 55%),
-      linear-gradient(180deg, #065a9b 0%, #0a6cb0 45%, #1288d8 70%, #6fd3f4 100%);
+      radial-gradient(1100px 460px at 82% -10%, rgba(10, 122, 208, 0.13), transparent 62%),
+      radial-gradient(820px 380px at 4% -4%, rgba(92, 192, 238, 0.14), transparent 58%),
+      #ffffff;
   }
-  .grad-cta {
-    background:
-      linear-gradient(180deg, rgba(2, 38, 68, 0.2) 0%, rgba(2, 38, 68, 0) 70%),
-      radial-gradient(110% 90% at 50% 115%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 62%),
-      linear-gradient(158deg, #05548f 0%, #0a6cb0 48%, #1a93dd 100%);
+  .wash-soft {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fcfe 45%, #f2f9fd 100%);
   }
-  .grad-tint {
-    background: linear-gradient(180deg, #ffffff 0%, #eff8fe 42%, #e2f3fd 100%);
+  .panel {
+    background: linear-gradient(158deg, #ffffff 0%, #f6fbfe 48%, #eaf4fc 100%);
+    box-shadow:
+      0 1px 2px rgba(9, 40, 60, 0.04),
+      0 14px 38px -22px rgba(9, 40, 60, 0.26);
   }
-  .grad-night {
-    background:
-      radial-gradient(90% 70% at 50% 0%, rgba(14, 134, 214, 0.28) 0%, rgba(4, 18, 31, 0) 62%),
-      linear-gradient(180deg, #04121f 0%, #061c2c 100%);
-  }
-  .grad-word {
-    background: linear-gradient(92deg, #0e86d6 0%, #33b4ec 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .panel-plain {
+    background: #ffffff;
+    box-shadow:
+      0 1px 2px rgba(9, 40, 60, 0.04),
+      0 12px 34px -24px rgba(9, 40, 60, 0.22);
   }
 
-  /* scroll reveal */
+  /* ---- rules that fade at the ends ---- */
+  .rule {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, transparent, #e2e8ec 8%, #e2e8ec 92%, transparent);
+  }
+  .rule-tight {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, #e2e8ec 0%, #e2e8ec 80%, transparent);
+  }
+
+  /* ---- link with an underline that grows on hover ---- */
+  .link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    padding-bottom: 1px;
+    transition: color 0.2s var(--ease-soft), background-size 0.3s var(--ease-soft);
+  }
+  .link:hover {
+    color: var(--color-brand);
+    background-size: 100% 1.5px;
+  }
+  .link-quiet {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: color 0.2s var(--ease-soft), background-size 0.35s var(--ease-soft);
+  }
+  .link-quiet:hover {
+    color: var(--color-brand);
+    background-size: 100% 1px;
+  }
+
+  /* ---- reveal ---- */
   .reveal {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
   }
   .reveal-in {
     opacity: 1;
     transform: none;
     transition:
-      opacity 0.7s var(--ease-out-soft),
-      transform 0.7s var(--ease-out-soft);
+      opacity 0.75s var(--ease-soft),
+      transform 0.75s var(--ease-soft);
   }
   @media (prefers-reduced-motion: reduce) {
     .reveal,

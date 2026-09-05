@@ -1,5 +1,5 @@
 import Nav from "@/components/Nav";
-import Header from "@/components/Header";
+import Masthead from "@/components/Masthead";
 import Experience from "@/components/Experience";
 import TechStack from "@/components/TechStack";
 import Projects from "@/components/Projects";
@@ -11,13 +11,13 @@ export default function Page() {
     <>
       <a
         href="#experience"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-[14px] focus:font-medium focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-5 focus:top-5 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-[14px] focus:font-medium focus:text-white"
       >
-        Skip to experience
+        Skip to content
       </a>
       <Nav />
       <main>
-        <Header />
+        <Masthead />
         <Experience />
         <TechStack />
         <Projects />
