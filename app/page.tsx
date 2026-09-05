@@ -1,37 +1,27 @@
 import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
-import Glance from "@/components/Glance";
-import Pillars from "@/components/Pillars";
-import Work from "@/components/Work";
-import BeforeAfter from "@/components/BeforeAfter";
-import Statement from "@/components/Statement";
+import Header from "@/components/Header";
 import Experience from "@/components/Experience";
-import Stack from "@/components/Stack";
-import Contact from "@/components/Contact";
+import TechStack from "@/components/TechStack";
+import Projects from "@/components/Projects";
+import Education from "@/components/Education";
 import Footer from "@/components/Footer";
 
 export default function Page() {
   return (
     <>
       <a
-        href="#work"
+        href="#experience"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-[14px] focus:font-medium focus:text-white"
       >
-        Skip to work
+        Skip to experience
       </a>
       <Nav />
       <main>
-        <Hero />
-        <Stats />
-        <Glance />
-        <Pillars />
-        <Work />
-        <BeforeAfter />
-        <Statement />
+        <Header />
         <Experience />
-        <Stack />
-        <Contact />
+        <TechStack />
+        <Projects />
+        <Education />
       </main>
       <Footer />
     </>

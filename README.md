@@ -1,12 +1,23 @@
 # prasannawagh.dev
 
-Personal portfolio for **Prasanna Wagh** — full-stack engineer (React · Node.js · TypeScript · PostgreSQL).
+Personal site for **Prasanna Wagh** — full-stack engineer (React · Node.js · TypeScript · PostgreSQL).
 
-The site is aimed at hiring managers and recruiters first: the résumé is the primary
-call to action, an *At a glance* panel answers the screening questions up front, and
-the closing section is framed around hiring rather than client work.
+It reads as a résumé, not a marketing page: name and a short intro, then work
+experience, tech stack, projects, and education / other info.
 
 **Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4.**
+
+## Technology icons
+
+Brand marks are generated from the [Simple Icons](https://simpleicons.org) package
+(CC0) into `lib/icons.ts` — never hand-drawn. Regenerate with:
+
+```bash
+node scripts/gen-icons.mjs
+```
+
+A tool with no official mark (Zustand, BullMQ, and the practice labels) renders as a
+plain text chip rather than an invented logo.
 
 ## Design system
 
@@ -46,14 +57,18 @@ app/
   globals.css     design tokens + utilities
   icon.svg        favicon
 components/
-  Nav  Hero  Stats  Glance  Pillars  Work  BeforeAfter
-  Statement  Experience  Stack  Contact  Footer
-  Reveal  CountUp        (the only two client components)
+  Nav  Header  Experience  TechStack  Projects  Education  Footer
+  Section  TechIcon
+  Reveal          (with Nav, the only client components)
+lib/
+  icons.ts        generated brand marks
+scripts/
+  gen-icons.mjs   regenerates lib/icons.ts
 public/
   Prasanna-Wagh-Fullstack-Engineer.pdf
 ```
 
-Everything is a React Server Component except `Nav`, `Reveal` and `CountUp`, so the
+Everything is a React Server Component except `Nav` and `Reveal`, so the
 client bundle stays small. Fonts are self-hosted through the `geist` package — no
 Google Fonts request. No analytics, no tracking.
 
