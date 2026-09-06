@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: "Prasanna Wagh · Full-Stack Engineer",
   description:
-    "Full-stack engineer in Pune, open to hybrid roles. React, Node.js, TypeScript and PostgreSQL. Currently leading a tour booking marketplace running across Spain and Europe.",
+    "Full-stack engineer who owns the whole slice: schema and API design through to interface, pipeline and deploy. Currently leading a tour booking marketplace running across Spain and Europe.",
   keywords: [
     "Full Stack Developer",
     "React",
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
     url: SITE,
     title: "Prasanna Wagh · Full-Stack Engineer",
     description:
-      "Open to full-stack engineering roles, hybrid in Pune. I build multi-role SaaS end to end, with production platforms running across Spain and Europe.",
+      "Production software from database schema to deploy. Four role portals on one backend, live across Spain and Europe. Case studies with the decisions and the measurements.",
     siteName: "Prasanna Wagh",
   },
   twitter: {
     card: "summary_large_image",
     title: "Prasanna Wagh · Full-Stack Engineer",
     description:
-      "Open to full-stack roles in Pune. I build multi-role SaaS end to end with React, Node.js, TypeScript and PostgreSQL.",
+      "Full-stack engineer who owns the whole slice. Case studies with the architecture, the trade-offs and the measurements behind each number.",
   },
   alternates: { canonical: SITE },
   robots: { index: true, follow: true },

@@ -9,11 +9,11 @@ const PRINCIPLES = [
   {
     n: "02",
     title: "I measure before I claim.",
-    body: "Every number on this page came from a before and an after: a query plan, a cache hit rate, a deploy log. If I cannot measure it, it does not go in a bullet.",
+    body: "Every performance number on this site has a before and an after behind it: a query plan, a cache hit rate, a ticket count, a deploy log. If I cannot measure it, it does not go in a bullet.",
   },
   {
     n: "03",
-    title: "I hand over code someone else can run.",
+    title: "I leave systems easier to operate.",
     body: "Typed boundaries, predictable failures, a README that works on a fresh machine, and a pipeline anyone on the team can trigger without asking me first.",
   },
 ];
@@ -26,14 +26,14 @@ export default function Approach() {
           <Reveal>
             <p className="t-label flex items-center gap-2.5 pt-1 text-[#7f9aab] lg:sticky lg:top-24">
               <span className="h-[6px] w-[6px] rounded-full bg-cyan" />
-              Approach
+              How I work
             </p>
           </Reveal>
 
           <div className="min-w-0">
             <Reveal>
-              <h2 className="t-h2 max-w-[24ch] text-[clamp(26px,3.4vw,38px)] text-white">
-                Three things I do on every project, whoever is paying for it.
+              <h2 className="t-h2 max-w-[22ch] text-[clamp(25px,3.4vw,38px)] text-white">
+                Three things I do on every project.
               </h2>
             </Reveal>
 
@@ -46,7 +46,7 @@ export default function Approach() {
                       <span className="t-meta text-[#5c7a8c]">{p.n}</span>
                       <div>
                         <h3 className="t-h3 text-[clamp(19px,2.2vw,23px)] text-white">{p.title}</h3>
-                        <p className="mt-3 max-w-[66ch] text-[16px] leading-[1.65] text-[#a8c0cf]">
+                        <p className="mt-3 max-w-[66ch] text-[15.5px] leading-[1.65] text-[#a8c0cf] sm:text-[16px]">
                           {p.body}
                         </p>
                       </div>

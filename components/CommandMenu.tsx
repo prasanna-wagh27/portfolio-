@@ -19,18 +19,39 @@ export default function CommandMenu() {
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
+  /** Scrolls when the section is on this page, navigates home when it is not. */
   const go = useCallback((hash: string) => {
     setOpen(false);
-    document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+    const target = document.querySelector(hash);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+    else window.location.href = `/${hash}`;
   }, []);
 
   const items: Item[] = useMemo(
     () => [
+      { label: "Selected work", hint: "Section", keywords: "projects marketplace built", run: () => go("#work") },
       { label: "Experience", hint: "Section", keywords: "work jobs roles octogle averta", run: () => go("#experience") },
-      { label: "Projects", hint: "Section", keywords: "work built marketplace sendkart", run: () => go("#projects") },
-      { label: "Stack", hint: "Section", keywords: "tech skills react node typescript", run: () => go("#stack") },
-      { label: "Activity", hint: "Section", keywords: "github contributions commits", run: () => go("#activity") },
-      { label: "Background", hint: "Section", keywords: "education certification details", run: () => go("#more") },
+      { label: "How I work", hint: "Section", keywords: "approach principles values", run: () => go("#approach") },
+      { label: "Toolkit", hint: "Section", keywords: "tech stack skills react node typescript", run: () => go("#toolkit") },
+      { label: "Background", hint: "Section", keywords: "education certification details", run: () => go("#background") },
+      {
+        label: "Tour Booking Marketplace",
+        hint: "Case study",
+        keywords: "project spain europe redis bullmq portals",
+        run: () => {
+          setOpen(false);
+          window.location.href = "/work/tour-booking-marketplace";
+        },
+      },
+      {
+        label: "AI-Powered Recruiter Marketplace",
+        hint: "Case study",
+        keywords: "project recruiter candidate employer commission",
+        run: () => {
+          setOpen(false);
+          window.location.href = "/work/recruiter-marketplace";
+        },
+      },
       {
         label: "Copy email address",
         hint: "prasannawagh146@gmail.com",
@@ -171,7 +192,7 @@ export default function CommandMenu() {
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Jump to a section, copy an address, open a link"
+                placeholder="Jump to a section, open a case study, copy an address"
                 aria-label="Search commands"
                 className="w-full bg-transparent py-4 text-[15px] text-ink outline-none placeholder:text-faint"
               />

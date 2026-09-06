@@ -129,6 +129,18 @@
       0 0 0 1px rgba(26, 160, 230, 0.3);
   }
 
+  /* ---------- the product visual ----------
+     Frames a screenshot or a system diagram so it reads as an artefact on the
+     page rather than as loose ink.                                          */
+  .visual {
+    background: linear-gradient(180deg, #ffffff 0%, #f7fcfe 100%);
+    box-shadow:
+      0 1px 2px rgba(11, 26, 36, 0.05),
+      0 26px 50px -32px rgba(11, 26, 36, 0.38),
+      0 0 0 1px rgba(26, 160, 230, 0.14);
+  }
+  .diagram text { font-feature-settings: "cv11", "ss01"; }
+
   /* the one saturated element on the page */
   .grad-signature {
     background: linear-gradient(191deg, #62e9ff 0%, #1aa0e6 53.5%, #886be0 100%);
