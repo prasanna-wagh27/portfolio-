@@ -11,7 +11,7 @@ const JOBS = [
   {
     start: "2025-07-01",
     end: undefined,
-    date: "Jul 2025 — Present",
+    date: "Jul 2025 to now",
     org: "Octogle Technologies",
     title: "Full-stack engineer · Technical lead",
     place: "Pune, on site",
@@ -27,7 +27,7 @@ const JOBS = [
   {
     start: "2023-07-01",
     end: "2024-10-01",
-    date: "Jul 2023 — Oct 2024",
+    date: "Jul 2023 to Oct 2024",
     org: "Averta Strategy Pvt Ltd",
     title: "Java full-stack engineer",
     place: "Pune, on site",
@@ -47,7 +47,7 @@ export default function Experience() {
       <ol>
         {JOBS.map((job, i) => (
           <Reveal key={job.org} delay={i * 60}>
-            <li className={i > 0 ? "mt-14 border-t border-line pt-14" : ""}>
+            <li className={i > 0 ? "mt-12 border-t border-line pt-12" : ""}>
               <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1.5">
                 <h3 className="t-h3 text-[clamp(21px,2.4vw,27px)] text-ink">{job.org}</h3>
                 {job.current ? (

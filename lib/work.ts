@@ -1,18 +1,11 @@
 /**
  * Single source of truth for the work section and the case study pages.
  *
- * Rule for this file: every number here has a before and an after behind it.
- * Nothing gets a figure it cannot survive being asked about in an interview.
+ * Figures live in the experience bullets, not here. This file describes what
+ * each project is, what was built and why it was built that way.
  */
 
 export type Tech = { label: string; slug?: string };
-
-export type Metric = {
-  value: string;
-  label: string;
-  /** How it was measured. Shown on the case study, not on the card. */
-  basis?: string;
-};
 
 export type Decision = {
   title: string;
@@ -37,11 +30,10 @@ export type Project = {
   access: string;
   /** The card paragraph. Two sentences, no more. */
   summary: string;
-  /** What this person personally owned. The single most useful thing on the page. */
+  /** The parts of the system this person was responsible for. */
   owned: string[];
-  /** The engineering problem worth talking about. */
+  /** The part that was actually difficult. */
   hardPart: string;
-  metrics: Metric[];
   stack: Tech[];
   /**
    * Drop a screenshot into /public and name it here to replace the diagram
@@ -65,13 +57,13 @@ export const PROJECTS: Project[] = [
     slug: "tour-booking-marketplace",
     n: "01",
     name: "Tour Booking Marketplace",
-    tagline: "Four role portals on one backend, live across Spain and Europe",
+    tagline: "Four role portals running on one backend, in Spain and Europe",
     role: "Lead full-stack engineer · Octogle Technologies",
     period: "Jul 2025 to now",
     liveNote: "Live in Spain and Europe",
     access: "Client codebase, not public",
     summary:
-      "Production SaaS for booking walking tours, boat experiences and local activities. I took it from an empty repository to production and guided the three engineers building it with me.",
+      "A booking platform for walking tours, boat experiences and local activities. I started it from an empty repository and built it with three other engineers.",
     owned: [
       "Architecture",
       "REST API",
@@ -84,32 +76,7 @@ export const PROJECTS: Project[] = [
       "Team guidance",
     ],
     hardPart:
-      "Four product surfaces — Customer, Guide, Tour Operator and Admin — had to run against one backend while each kept its own permissions, its own workflow and its own idea of what a booking means.",
-    metrics: [
-      {
-        value: "~40%",
-        label: "fewer redundant database queries",
-        basis:
-          "Query counts per booking request, sampled before and after the Redis read-through cache landed.",
-      },
-      {
-        value: "~30%",
-        label: "lower average page load",
-        basis:
-          "Average page load across the customer portal, same routes, before and after caching and query tuning.",
-      },
-      {
-        value: "~60%",
-        label: "fewer auth support issues",
-        basis:
-          "Auth-related support tickets per month, before and after replacing the third-party provider with the custom JWT and RBAC layer.",
-      },
-      {
-        value: "< 10 min",
-        label: "release, from hours of manual work",
-        basis: "Wall-clock time from merge to deployed, on the Docker and Railway pipeline.",
-      },
-    ],
+      "The four surfaces, Customer, Guide, Tour Operator and Admin, all run against one backend, and each one keeps its own permissions, its own workflow and its own idea of what a booking means.",
     stack: [
       { label: "React", slug: "react" },
       { label: "TypeScript", slug: "typescript" },
@@ -220,7 +187,7 @@ export const PROJECTS: Project[] = [
     slug: "recruiter-marketplace",
     n: "02",
     name: "AI-Powered Recruiter Marketplace",
-    tagline: "Four independent platforms, one commission-bearing permission model",
+    tagline: "Four platforms sharing one set of permissions",
     role: "Full-stack engineer · Octogle Technologies",
     period: "2025",
     access: "Client codebase, not public",
@@ -234,11 +201,7 @@ export const PROJECTS: Project[] = [
       "Frontend",
     ],
     hardPart:
-      "Money changes what a permission means. A recruiter can see a candidate they referred, an employer can see candidates referred to their vacancy, and neither can see the other's book of business — all on shared records, with commission attached to who introduced whom.",
-    metrics: [
-      { value: "4", label: "independent platforms" },
-      { value: "1", label: "shared permission model" },
-    ],
+      "Money changes what a permission means. A recruiter can see a candidate they referred, an employer can see candidates referred to their vacancy, and neither can see the other's book of business. All of it sits on shared records, with commission attached to who introduced whom.",
     stack: [
       { label: "React", slug: "react" },
       { label: "Vite", slug: "vite" },
@@ -266,7 +229,7 @@ export const PROJECTS: Project[] = [
           problem:
             "Role alone cannot answer whether a recruiter may see a candidate. Two recruiters have identical roles and must see completely different candidates.",
           decision:
-            "Scope access by the relationship between the actor and the record — who referred whom, against which vacancy — and check it at the API boundary.",
+            "Scope access by the relationship between the actor and the record, meaning who referred whom against which vacancy, and check it at the API boundary.",
           tradeoff:
             "Every read carries a relationship check rather than a simple role comparison, which is more expensive and more code. It is also the only version that is correct when commission is on the line.",
           result:
@@ -301,8 +264,7 @@ export const PROJECTS: Project[] = [
       "A SaaS platform that lets a small business put a mini website together without writing code: drag-and-drop blocks, QR code integration and built-in feedback collection.",
     owned: ["Everything"],
     hardPart:
-      "A builder is two products wearing one coat: an editor for someone who has never built a page, and a renderer whose output has to load fast on a phone in a shop.",
-    metrics: [{ value: "Live", label: "at sendkart.in" }],
+      "The editor has to be usable by someone who has never built a page, and the pages it produces have to load fast on a phone in a shop.",
     stack: [
       { label: "Next.js", slug: "nextdotjs" },
       { label: "React", slug: "react" },
@@ -316,6 +278,6 @@ export function projectBySlug(slug: string): Project | undefined {
   return PROJECTS.find((p) => p.slug === slug);
 }
 
-/** Cards on the homepage. Sendkart is real but small; it reads as a footnote. */
+/** Sendkart is a solo build with no case study, so it sits below the other two. */
 export const FEATURED = PROJECTS.filter((p) => p.study);
 export const SIDE = PROJECTS.filter((p) => !p.study);

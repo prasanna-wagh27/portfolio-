@@ -31,7 +31,6 @@ export default function CommandMenu() {
     () => [
       { label: "Selected work", hint: "Section", keywords: "projects marketplace built", run: () => go("#work") },
       { label: "Experience", hint: "Section", keywords: "work jobs roles octogle averta", run: () => go("#experience") },
-      { label: "How I work", hint: "Section", keywords: "approach principles values", run: () => go("#approach") },
       { label: "Toolkit", hint: "Section", keywords: "tech stack skills react node typescript", run: () => go("#toolkit") },
       { label: "Background", hint: "Section", keywords: "education certification details", run: () => go("#background") },
       {

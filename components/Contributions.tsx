@@ -2,11 +2,9 @@ import Reveal from "./Reveal";
 import Section from "./Section";
 
 /**
- * Secondary evidence, sized like secondary evidence.
- *
- * A commit count does not say whether the work was a typo fix or a system, so
- * this is one line and a texture strip rather than a feature of the page. The
- * number is still pulled live, because a screenshot of a graph proves nothing.
+ * One line and a small strip. A commit count cannot say whether the work was a
+ * typo fix or a system, so it does not get more room than that. The number is
+ * pulled live rather than typed in, so it cannot go stale.
  */
 const USER = "prasanna-wagh27";
 
@@ -69,8 +67,7 @@ export default async function Contributions() {
           >
             github.com/{USER}
           </a>
-          . Most of the work above lives in client repositories, so treat this as a pulse rather
-          than a portfolio.
+          . Most of my work is in client repositories, so this only shows part of it.
         </p>
       </Reveal>
 

@@ -7,7 +7,7 @@ import CommandMenu from "./CommandMenu";
 const SECTIONS = [
   { hash: "#work", label: "Work" },
   { hash: "#experience", label: "Experience" },
-  { hash: "#approach", label: "How I work" },
+  { hash: "#toolkit", label: "Stack" },
 ];
 
 const RESUME = "/Prasanna-Wagh-Fullstack-Engineer.pdf";
@@ -66,11 +66,8 @@ export default function Nav({ home = true }: { home?: boolean }) {
           <a href={RESUME} download className="link-quiet text-[14.5px] font-medium text-ink">
             Résumé
           </a>
-          <a
-            href={EMAIL}
-            className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-[14px] font-medium text-white transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[1px] hover:shadow-[0_12px_26px_-14px_rgba(26,160,230,0.85)]"
-          >
-            Let&apos;s talk
+          <a href={EMAIL} className="link-quiet text-[14.5px] font-medium text-ink">
+            Email
           </a>
         </nav>
 
@@ -123,12 +120,10 @@ export default function Nav({ home = true }: { home?: boolean }) {
                 </a>
               </li>
             </ul>
-            <a
-              href={EMAIL}
-              className="my-5 inline-flex w-full items-center justify-center rounded-full bg-ink px-5 py-3 text-[15px] font-medium text-white"
-            >
-              Let&apos;s talk
+            <a href={EMAIL} className="block border-b border-line py-4 text-[17px] font-medium text-ink">
+              Email
             </a>
+            <div className="h-5" />
           </nav>
         </div>
       ) : null}

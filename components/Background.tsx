@@ -5,7 +5,7 @@ const EDUCATION = [
   {
     title: "B.Tech, Mechanical Engineering",
     org: "University of Mumbai",
-    meta: "2018 – 2022 · CGPA 7.77 / 10",
+    meta: "2018 to 2022 · CGPA 7.77 / 10",
   },
   { title: "Full Stack Java Development", org: "Vibrantminds Technologies", meta: "Certification" },
 ];

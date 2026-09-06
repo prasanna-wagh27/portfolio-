@@ -1,10 +1,8 @@
 import Nav from "@/components/Nav";
 import ScrollProgress from "@/components/ScrollProgress";
 import Masthead from "@/components/Masthead";
-import Proof from "@/components/Proof";
 import Work from "@/components/Work";
 import Experience from "@/components/Experience";
-import Approach from "@/components/Approach";
 import Toolkit from "@/components/Toolkit";
 import Contributions from "@/components/Contributions";
 import Background from "@/components/Background";
@@ -24,10 +22,8 @@ export default function Page() {
       <Nav />
       <main>
         <Masthead />
-        <Proof />
         <Work />
         <Experience />
-        <Approach />
         <Toolkit />
         <Contributions />
         <Background />

@@ -100,7 +100,7 @@ function Frame({ label, children, width }: { label: string; children: React.Reac
       <figcaption className="t-label mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-faint">
         {label}
         <span className="normal-case tracking-normal text-[11px] text-muted lg:hidden">
-          — swipe to follow the path
+          (swipe to follow the path)
         </span>
       </figcaption>
     </figure>
@@ -186,7 +186,7 @@ function RecruiterDiagram() {
         h={84}
         tone="api"
         title="REST API · relationship-scoped authorisation"
-        sub="who referred whom, against which vacancy — resolved per request, not per role"
+        sub="who referred whom, against which vacancy: resolved per request, not per role"
       />
 
       <Down x={165} from={232} to={276} />

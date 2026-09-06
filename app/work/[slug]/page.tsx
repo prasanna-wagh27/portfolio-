@@ -31,6 +31,11 @@ export async function generateMetadata({
   };
 }
 
+/** Lowercases each label for use mid-sentence, leaving acronyms like REST API alone. */
+function lower(items: string[]): string[] {
+  return items.map((i) => (/^[A-Z][A-Z/]/.test(i) ? i : i[0].toLowerCase() + i.slice(1)));
+}
+
 /** Section frame for the case study: a sticky label rail beside the prose. */
 function Block({
   label,
@@ -45,7 +50,7 @@ function Block({
     <section className={soft ? "wash-section" : "bg-white"}>
       <div className="mx-auto max-w-5xl px-6 sm:px-10">
         {soft ? null : <hr className="rule" />}
-        <div className="grid gap-8 py-14 sm:py-20 lg:grid-cols-[168px_1fr] lg:gap-14">
+        <div className="grid gap-8 py-12 sm:py-16 lg:grid-cols-[168px_1fr] lg:gap-14">
           <Reveal>
             <p className="t-label flex items-center gap-2.5 pt-1 text-muted lg:sticky lg:top-24">
               <span className="h-[6px] w-[6px] rounded-full bg-brand" />
@@ -133,36 +138,28 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
         </section>
 
         <Block label="The problem">
-          {study.problem.map((p) => (
-            <Reveal key={p.slice(0, 24)}>
-              <p className="mb-5 max-w-[70ch] text-[16px] leading-[1.7] text-body last:mb-0 sm:text-[17px]">
-                {p}
-              </p>
-            </Reveal>
-          ))}
+          <Reveal>
+            <div className="space-y-5">
+              {study.problem.map((p) => (
+                <p key={p.slice(0, 24)} className="max-w-[70ch] text-[16px] leading-[1.7] text-body sm:text-[17px]">
+                  {p}
+                </p>
+              ))}
+            </div>
+          </Reveal>
         </Block>
 
         <Block label="My part" soft>
           <Reveal>
-            <p className="max-w-[52ch] text-[clamp(19px,2.4vw,26px)] font-medium leading-[1.35] tracking-[-0.026em] text-ink">
+            <p className="max-w-[66ch] text-[16px] leading-[1.7] text-body sm:text-[17px]">
               {study.responsibility}
             </p>
+            <p className="mt-5 max-w-[66ch] text-[16px] leading-[1.7] text-body">
+              The parts I was responsible for: {lower(project.owned).join(", ")}.
+            </p>
           </Reveal>
-          <Reveal delay={60}>
-            <h2 className="t-label mt-10 text-faint">What I owned</h2>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {project.owned.map((o) => (
-                <li
-                  key={o}
-                  className="rounded-full bg-white px-3.5 py-1.5 text-[13px] font-medium text-ink-2 shadow-[0_0_0_1px_rgba(26,160,230,0.16)]"
-                >
-                  {o}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal delay={100}>
-            <h2 className="t-label mt-10 text-faint">Built with</h2>
+          <Reveal delay={80}>
+            <h2 className="t-label mt-9 text-faint">Built with</h2>
             <ul className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
               {project.stack.map((t) => (
                 <li key={t.label} className="inline-flex items-center gap-2 text-[13.5px] text-body">
@@ -194,7 +191,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
 
         <section id="decisions" className="wash-dark scroll-mt-20">
           <div className="mx-auto max-w-5xl px-6 sm:px-10">
-            <div className="grid gap-8 py-16 sm:py-24 lg:grid-cols-[168px_1fr] lg:gap-14">
+            <div className="grid gap-8 py-12 sm:py-18 lg:grid-cols-[168px_1fr] lg:gap-14">
               <Reveal>
                 <p className="t-label flex items-center gap-2.5 pt-1 text-[#7f9aab] lg:sticky lg:top-24">
                   <span className="h-[6px] w-[6px] rounded-full bg-cyan" />
@@ -205,7 +202,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
               <div className="min-w-0">
                 <Reveal>
                   <h2 className="t-h2 max-w-[24ch] text-[clamp(24px,3.2vw,36px)] text-white">
-                    What I chose, what it cost, and what it bought.
+                    A few decisions worth explaining.
                   </h2>
                 </Reveal>
 
@@ -257,37 +254,13 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
             ))}
           </ul>
 
-          {project.metrics.some((m) => m.basis) ? (
-            <Reveal delay={120}>
-              <h2 className="t-label mt-12 text-faint">How each number was measured</h2>
-              <dl className="mt-5 border-t border-line">
-                {project.metrics
-                  .filter((m) => m.basis)
-                  .map((m) => (
-                    <div
-                      key={m.label}
-                      className="grid gap-x-8 gap-y-2 border-b border-line py-5 sm:grid-cols-[150px_1fr]"
-                    >
-                      <dt className="text-[15px] font-medium text-ink">
-                        <span className="text-brand-large">{m.value}</span>{" "}
-                        <span className="text-muted">{m.label}</span>
-                      </dt>
-                      <dd className="max-w-[62ch] text-[14.5px] leading-[1.6] text-body">
-                        {m.basis}
-                      </dd>
-                    </div>
-                  ))}
-              </dl>
-            </Reveal>
-          ) : null}
         </Block>
 
         {study.notBuilt ? (
           <Block label="Not built" soft>
             <Reveal>
               <p className="max-w-[60ch] text-[16px] leading-[1.7] text-body">
-                Scope that was considered and deliberately left out, which on a small team is the
-                decision that matters most.
+                Things I considered and left out on purpose.
               </p>
             </Reveal>
             <ul className="mt-8 space-y-5">
@@ -321,21 +294,9 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
               </div>
               <a
                 href="mailto:prasannawagh146@gmail.com"
-                className="group inline-flex flex-none items-center gap-2.5 self-start rounded-full bg-ink px-6 py-3 text-[15px] font-medium text-white transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_16px_34px_-16px_rgba(26,160,230,0.75)] sm:self-auto"
+                className="link flex-none self-start text-[15px] font-medium text-link sm:self-auto"
               >
-                Let&apos;s talk
-                <svg
-                  viewBox="0 0 16 16"
-                  className="h-3.5 w-3.5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[3px]"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M3 8h10m0 0-3.6-3.6M13 8l-3.6 3.6" />
-                </svg>
+                prasannawagh146@gmail.com
               </a>
             </div>
           </div>

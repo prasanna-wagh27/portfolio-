@@ -42,12 +42,6 @@ export default function Toolkit() {
           </Reveal>
         ))}
       </dl>
-      <Reveal delay={220}>
-        <p className="mt-7 max-w-[60ch] text-[14.5px] leading-[1.6] text-muted">
-          Deepest in the middle of that list: the API, the data layer and the boundary between
-          them. Everything above and below it I can hold on my own when a product needs it.
-        </p>
-      </Reveal>
     </Section>
   );
 }
