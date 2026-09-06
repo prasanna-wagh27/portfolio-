@@ -81,28 +81,39 @@ function Down({ x, from, to }: { x: number; from: number; to: number }) {
   );
 }
 
-function Frame({ label, children, width }: { label: string; children: React.ReactNode; width: number }) {
+function Frame({
+  label,
+  alt,
+  children,
+  width,
+}: {
+  /** Shown in the header strip. Short, because the project name is directly above it. */
+  label: string;
+  /** The full description, for anyone who cannot see the drawing. */
+  alt: string;
+  children: React.ReactNode;
+  width: number;
+}) {
   return (
     <figure className="diagram">
+      <figcaption className="visual-head flex items-baseline justify-between gap-4 px-6 py-4">
+        <span className="t-label text-muted">{label}</span>
+        <span className="text-meta text-faint lg:hidden">swipe</span>
+      </figcaption>
       {/* Scrolls rather than scales below 620px: shrinking the whole frame to a
-          phone would take the labels under 7px and make the diagram useless. */}
-      <div className="-mx-1 overflow-x-auto px-1">
+          phone would take the labels under 7px and make the diagram useless. The
+          mask fades the cut edge so it reads as continuing, not as clipped. */}
+      <div className="diagram-scroll overflow-x-auto px-6 py-8">
         <svg
           viewBox={`0 0 ${width} 452`}
           role="img"
-          aria-label={label}
+          aria-label={alt}
           className="block h-auto w-full min-w-[620px]"
           fontFamily="inherit"
         >
           {children}
         </svg>
       </div>
-      <figcaption className="t-label mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-faint">
-        {label}
-        <span className="normal-case tracking-normal text-[11px] text-muted lg:hidden">
-          (swipe to follow the path)
-        </span>
-      </figcaption>
     </figure>
   );
 }
@@ -119,7 +130,7 @@ function Bus({ y, from, to }: { y: number; from: number; to: number }) {
 function TourDiagram() {
   const centres = COL.map((x) => x + CW / 2);
   return (
-    <Frame width={W} label="Request path, tour booking marketplace">
+    <Frame width={W} label="Request path" alt="Request path through the tour booking marketplace: four role portals above one REST API, with PostgreSQL, Redis and BullMQ behind it and workers off the request path.">
       <Box x={COL[0]} y={16} w={CW} h={66} title="Customer" sub="search, book, pay" />
       <Box x={COL[1]} y={16} w={CW} h={66} title="Guide" sub="assigned schedule" />
       <Box x={COL[2]} y={16} w={CW} h={66} title="Tour Operator" sub="listings, availability" />
@@ -167,7 +178,7 @@ function TourDiagram() {
 function RecruiterDiagram() {
   const centres = COL.map((x) => x + CW / 2);
   return (
-    <Frame width={W} label="Access model, recruiter marketplace">
+    <Frame width={W} label="Access model" alt="Access model for the recruiter marketplace: four platforms above one REST API that resolves permissions from the referral relationship, over vacancies, pipeline states and commission attribution.">
       <Box x={COL[0]} y={16} w={CW} h={66} title="Employer" sub="post, review, accept" />
       <Box x={COL[1]} y={16} w={CW} h={66} title="Recruiter" sub="bid, refer, earn" />
       <Box x={COL[2]} y={16} w={CW} h={66} title="Candidate" sub="own profile only" />

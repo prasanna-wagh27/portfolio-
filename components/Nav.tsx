@@ -47,7 +47,7 @@ export default function Nav({ home = true }: { home?: boolean }) {
       <div className="mx-auto flex h-16 max-w-5xl items-center gap-6 px-6 sm:px-10">
         <a
           href={home ? "#top" : "/"}
-          className={`flex-none text-[15px] font-medium tracking-[-0.02em] transition-[opacity,transform] duration-500 ${
+          className={`flex-none text-note font-medium transition-[opacity,transform] duration-500 ${
             showMark ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
           }`}
           aria-hidden={!showMark}
@@ -56,17 +56,17 @@ export default function Nav({ home = true }: { home?: boolean }) {
           Prasanna Wagh<span className="text-brand">.</span>
         </a>
 
-        <nav className="ml-auto hidden items-center gap-7 sm:flex" aria-label="Sections">
+        <nav className="ml-auto hidden items-center gap-8 sm:flex" aria-label="Sections">
           {SECTIONS.map((l) => (
-            <a key={l.hash} href={href(l.hash)} className="link-quiet text-[14.5px] text-body">
+            <a key={l.hash} href={href(l.hash)} className="link-quiet text-note text-body">
               {l.label}
             </a>
           ))}
           <CommandMenu />
-          <a href={RESUME} download className="link-quiet text-[14.5px] font-medium text-ink">
+          <a href={RESUME} download className="link-quiet text-note font-medium text-ink">
             Résumé
           </a>
-          <a href={EMAIL} className="link-quiet text-[14.5px] font-medium text-ink">
+          <a href={EMAIL} className="link-quiet text-note font-medium text-ink">
             Email
           </a>
         </nav>
@@ -76,7 +76,7 @@ export default function Nav({ home = true }: { home?: boolean }) {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          className="ml-auto inline-flex items-center gap-2 text-[14.5px] font-medium text-ink sm:hidden"
+          className="ml-auto inline-flex items-center gap-2 text-note font-medium text-ink sm:hidden"
         >
           {open ? "Close" : "Menu"}
           <span className="relative flex h-3 w-4 flex-col justify-between" aria-hidden="true">
@@ -108,19 +108,19 @@ export default function Nav({ home = true }: { home?: boolean }) {
                   <a
                     href={href(l.hash)}
                     onClick={() => setOpen(false)}
-                    className="block py-4 text-[17px] font-medium text-ink"
+                    className="block py-4 text-prose font-medium text-ink"
                   >
                     {l.label}
                   </a>
                 </li>
               ))}
               <li className="border-b border-line">
-                <a href={RESUME} download className="block py-4 text-[17px] font-medium text-ink">
+                <a href={RESUME} download className="block py-4 text-prose font-medium text-ink">
                   Résumé
                 </a>
               </li>
             </ul>
-            <a href={EMAIL} className="block border-b border-line py-4 text-[17px] font-medium text-ink">
+            <a href={EMAIL} className="block border-b border-line py-4 text-prose font-medium text-ink">
               Email
             </a>
             <div className="h-5" />

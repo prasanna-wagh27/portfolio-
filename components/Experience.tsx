@@ -1,4 +1,5 @@
 import { duration } from "@/lib/duration";
+import MetaLine from "./MetaLine";
 import Reveal from "./Reveal";
 import Section from "./Section";
 
@@ -48,10 +49,10 @@ export default function Experience() {
         {JOBS.map((job, i) => (
           <Reveal key={job.org} delay={i * 60}>
             <li className={i > 0 ? "mt-12 border-t border-line pt-12" : ""}>
-              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1.5">
-                <h3 className="t-h3 text-[clamp(21px,2.4vw,27px)] text-ink">{job.org}</h3>
+              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+                <h3 className="t-h3 text-ink">{job.org}</h3>
                 {job.current ? (
-                  <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-pos">
+                  <span className="inline-flex items-center gap-2 text-meta font-medium text-pos">
                     <span className="relative flex h-1.5 w-1.5">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pos opacity-70" />
                       <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-pos" />
@@ -61,28 +62,31 @@ export default function Experience() {
                 ) : null}
               </div>
 
-              <p className="mt-2 text-[16px] font-medium text-ink-2">{job.title}</p>
+              <p className="mt-2 text-prose font-medium text-ink-2">{job.title}</p>
 
-              <p className="mt-1.5 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[13.5px]">
-                <span className="t-meta text-muted">{job.date}</span>
-                <span className="t-meta text-faint">{duration(job.start, job.end)}</span>
-                <span className="text-line-2">·</span>
-                <span className="text-muted">{job.place}</span>
-              </p>
+              <MetaLine
+                className="mt-2 text-fine text-muted"
+                items={[
+                  <span key="date" className="t-meta">
+                    {job.date} <span className="text-faint">{duration(job.start, job.end)}</span>
+                  </span>,
+                  job.place,
+                ]}
+              />
 
-              <ul className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-2">
+              <ul className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
                 {job.scope.map((s) => (
-                  <li key={s} className="rounded-full bg-tint px-3 py-1 text-[12.5px] text-ink-2">
+                  <li key={s} className="rounded-full bg-tint px-3 py-1 text-meta text-ink-2">
                     {s}
                   </li>
                 ))}
               </ul>
 
-              <ul className="mt-7 space-y-3.5">
+              <ul className="mt-8 space-y-4">
                 {job.points.map((p) => (
                   <li
                     key={p}
-                    className="relative max-w-[76ch] pl-6 text-[15.5px] leading-[1.6] text-body sm:text-[16px]"
+                    className="relative max-w-[76ch] pl-6 text-note text-body"
                   >
                     <span className="absolute left-0 top-[11px] h-px w-3 grad-hairline" />
                     {p}

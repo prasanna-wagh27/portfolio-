@@ -1,20 +1,69 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Colour, surface and motion system.
+   Type, colour and surface system.
 
-   Palette values are lifted from lightwork.co's own stylesheet:
-   brand #1AA0E6, tint #E7F6FE, the 191deg cyan/azure/violet
-   signature gradient, and shadows that are blue tinted rather
-   than grey, which is what makes that site read as crisp.
+   TYPE. Nine steps, no more. Each step binds its own line height
+   and tracking, because the correct tracking for 11px is not the
+   correct tracking for 72px: display sizes need to be pulled in,
+   small sizes need to be let out. Binding them to the token means
+   a component can never pick one and forget the other, which is
+   how a page ends up with fourteen sizes and no rhythm.
 
-   Two text-safe blues are derived from it so links and units
-   clear WCAG AA, since #1AA0E6 on white is only 2.9:1.
+   SPACING. Everything vertical is a multiple of 4px, taken from
+   {4 8 12 16 24 32 48 64 96}. Nothing uses 5, 7, 9 or 14.
+
+   COLOUR. Palette values are lifted from lightwork.co's own
+   stylesheet: brand #1AA0E6, tint #E7F6FE, the 191deg signature
+   gradient, and shadows tinted blue rather than grey. Two
+   text-safe blues are derived so links and units clear WCAG AA,
+   since #1AA0E6 on white is only 2.9:1.
    ============================================================ */
 
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---- type scale ---- */
+  --text-label: 11px;
+  --text-label--line-height: 1;
+  --text-label--letter-spacing: 0.18em;
+  --text-label--font-weight: 500;
+
+  --text-meta: 12.5px;
+  --text-meta--line-height: 1.45;
+  --text-meta--letter-spacing: 0;
+
+  --text-fine: 13.5px;
+  --text-fine--line-height: 1.5;
+  --text-fine--letter-spacing: -0.004em;
+
+  --text-note: 15px;
+  --text-note--line-height: 1.55;
+  --text-note--letter-spacing: -0.01em;
+
+  --text-prose: 16.5px;
+  --text-prose--line-height: 1.68;
+  --text-prose--letter-spacing: -0.014em;
+
+  --text-lead: 18.5px;
+  --text-lead--line-height: 1.5;
+  --text-lead--letter-spacing: -0.02em;
+
+  --text-h3: clamp(21px, 2.4vw, 26px);
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.026em;
+  --text-h3--font-weight: 600;
+
+  --text-h2: clamp(26px, 3.2vw, 34px);
+  --text-h2--line-height: 1.12;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h2--font-weight: 600;
+
+  --text-display: clamp(40px, 6.6vw, 72px);
+  --text-display--line-height: 0.94;
+  --text-display--letter-spacing: -0.042em;
+  --text-display--font-weight: 600;
 
   /* ink ramp */
   --color-ink: #08151d;
@@ -29,11 +78,9 @@
   --color-paper: #ffffff;
 
   /* brand, straight from the reference */
-  --color-brand: #1aa0e6;        /* the reference blue: glows, rings, dots, gradients */
+  --color-brand: #1aa0e6;
   --color-brand-large: #1290db;  /* display accents and units, 3.4:1 */
-  --color-link: #0077c2;         /* links only. fully saturated azure at 4.7:1,
-                                    where the previous #0b6ea6 was desaturated
-                                    and read as grey-blue */
+  --color-link: #0077c2;         /* links only, 4.7:1 */
   --color-cyan: #62e9ff;
   --color-violet: #886be0;
   --color-tint: #e7f6fe;
@@ -58,9 +105,9 @@
   body {
     background: var(--color-paper);
     color: var(--color-ink);
-    font-size: 17px;
-    line-height: 1.6;
-    letter-spacing: -0.011em;
+    font-size: var(--text-prose);
+    line-height: 1.68;
+    letter-spacing: -0.014em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "cv11", "ss01";
@@ -85,19 +132,44 @@
 
 @layer utilities {
   /* ---------- type ---------- */
-  .t-name   { font-weight: 600; letter-spacing: -0.045em; line-height: 0.92; text-wrap: balance; }
-  .t-h2     { font-weight: 600; letter-spacing: -0.032em; line-height: 1.08; text-wrap: balance; }
-  .t-h3     { font-weight: 600; letter-spacing: -0.026em; line-height: 1.2; }
-  .t-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    /* letter-spacing adds a trailing space after the last glyph; pull it back
-       so tracked-out labels optically align with what follows */
-    margin-right: -0.2em;
+  /* Headings are named, never hand-sized at the call site. Each pulls its size,
+     line height and tracking from one token, so they cannot drift apart. */
+  .t-name {
+    font-size: var(--text-display);
+    line-height: 0.94;
+    letter-spacing: -0.042em;
+    font-weight: 600;
+    text-wrap: balance;
   }
-  .t-meta   { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0; }
+  .t-h2 {
+    font-size: var(--text-h2);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  .t-h3 {
+    font-size: var(--text-h3);
+    line-height: 1.2;
+    letter-spacing: -0.026em;
+    font-weight: 600;
+    text-wrap: pretty;
+  }
+  .t-label {
+    font-size: var(--text-label);
+    line-height: 1;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    text-transform: uppercase;
+    /* tracking adds a trailing space after the last glyph; pull it back so a
+       tracked-out label optically aligns with whatever follows it */
+    margin-right: -0.18em;
+  }
+  .t-meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    letter-spacing: 0;
+  }
 
   /* ---------- surfaces ----------
      Sections fade white -> tint -> white, so they melt into one
@@ -138,6 +210,23 @@
       0 1px 2px rgba(11, 26, 36, 0.05),
       0 26px 50px -32px rgba(11, 26, 36, 0.38),
       0 0 0 1px rgba(26, 160, 230, 0.14);
+  }
+  /* the cut edge of a scrolling diagram fades rather than stopping dead */
+  .diagram-scroll {
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 92%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0, #000 92%, transparent 100%);
+  }
+  @media (min-width: 1024px) {
+    .diagram-scroll {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+
+  /* the strip that titles a diagram, like a plate caption above the figure */
+  .visual-head {
+    border-bottom: 1px solid rgba(26, 160, 230, 0.14);
+    background: linear-gradient(180deg, rgba(231, 246, 254, 0.5), rgba(231, 246, 254, 0));
   }
   .diagram text { font-feature-settings: "cv11", "ss01"; }
 
@@ -219,8 +308,12 @@
 
   .dot-live { animation: pulse-dot 2.6s ease-out infinite; }
 
-  /* the period after the name, slowly travelling through the brand ramp */
+  /* The period after the name. Geist gives a full stop a generous left
+     sidebearing, correct at 16px and a visible gap at 72px, so it is pulled
+     back optically. The gradient travels the brand ramp slowly enough to read
+     as a sheen rather than as an animation. */
   .accent-dot {
+    margin-left: -0.14em;
     background: linear-gradient(90deg, #1595db, #62e9ff, #886be0, #1595db);
     background-size: 200% 100%;
     -webkit-background-clip: text;

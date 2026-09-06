@@ -154,10 +154,10 @@ export default function CommandMenu() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open command menu"
-        className="group hidden items-center gap-2 rounded-full py-1.5 pl-3.5 pr-2 text-[13.5px] text-muted transition-colors hover:text-ink sm:inline-flex"
+        className="group hidden items-center gap-2 rounded-full py-1.5 pl-3.5 pr-2 text-fine text-muted transition-colors hover:text-ink sm:inline-flex"
       >
         Search
-        <kbd className="rounded-[5px] bg-tint px-1.5 py-0.5 font-mono text-[11px] text-brand-large transition-colors group-hover:bg-white">
+        <kbd className="rounded-[5px] bg-tint px-1.5 py-0.5 font-mono text-label text-brand-large transition-colors group-hover:bg-white">
           ⌘K
         </kbd>
       </button>
@@ -193,16 +193,16 @@ export default function CommandMenu() {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Jump to a section, open a case study, copy an address"
                 aria-label="Search commands"
-                className="w-full bg-transparent py-4 text-[15px] text-ink outline-none placeholder:text-faint"
+                className="w-full bg-transparent py-4 text-note text-ink outline-none placeholder:text-faint"
               />
-              <kbd className="hidden flex-none rounded-[5px] bg-tint px-1.5 py-0.5 font-mono text-[11px] text-muted sm:block">
+              <kbd className="hidden flex-none rounded-[5px] bg-tint px-1.5 py-0.5 font-mono text-label text-muted sm:block">
                 esc
               </kbd>
             </div>
 
             <ul ref={listRef} className="max-h-[46vh] overflow-y-auto p-2">
               {results.length === 0 ? (
-                <li className="px-3 py-6 text-center text-[14px] text-muted">Nothing matches that.</li>
+                <li className="px-3 py-6 text-center text-note text-muted">Nothing matches that.</li>
               ) : (
                 results.map((item, i) => (
                   <li key={item.label}>
@@ -214,8 +214,8 @@ export default function CommandMenu() {
                         i === active ? "bg-tint" : ""
                       }`}
                     >
-                      <span className="text-[14.5px] font-medium text-ink">{item.label}</span>
-                      <span className="t-meta truncate text-[11.5px] text-faint">
+                      <span className="text-note font-medium text-ink">{item.label}</span>
+                      <span className="t-meta truncate text-meta text-faint">
                         {copied && item.label.startsWith("Copy") ? "Copied" : item.hint}
                       </span>
                     </button>

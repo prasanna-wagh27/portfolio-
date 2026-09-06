@@ -56,7 +56,7 @@ export default async function Contributions() {
   return (
     <Section id="github" label="GitHub">
       <Reveal>
-        <p className="max-w-[58ch] text-[15.5px] leading-[1.65] text-body">
+        <p className="max-w-[58ch] text-note text-body">
           <span className="font-medium text-ink">{total.toLocaleString("en")} contributions</span>{" "}
           in the last year, pulled live from{" "}
           <a
@@ -73,7 +73,7 @@ export default async function Contributions() {
 
       <Reveal delay={70}>
         <div
-          className="mt-7 overflow-hidden [mask-image:linear-gradient(90deg,#000_0%,#000_88%,transparent_100%)]"
+          className="mt-8 overflow-hidden [mask-image:linear-gradient(90deg,#000_0%,#000_88%,transparent_100%)]"
           aria-hidden="true"
         >
           <div className="flex gap-[2px]">

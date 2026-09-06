@@ -35,9 +35,9 @@ export default function Toolkit() {
       <dl className="border-t border-line">
         {GROUPS.map((g, i) => (
           <Reveal key={g.title} delay={i * 50}>
-            <div className="grid gap-x-10 gap-y-2 border-b border-line py-6 sm:grid-cols-[200px_1fr]">
+            <div className="grid gap-x-12 gap-y-2 border-b border-line py-6 sm:grid-cols-[200px_1fr]">
               <dt className="t-label pt-1 text-faint">{g.title}</dt>
-              <dd className="text-[15.5px] leading-[1.7] text-body">{g.items.join(" · ")}</dd>
+              <dd className="text-note text-body">{g.items.join(" · ")}</dd>
             </div>
           </Reveal>
         ))}

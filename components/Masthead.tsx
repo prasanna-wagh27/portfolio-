@@ -7,18 +7,18 @@ const LINKS = [
 export default function Masthead() {
   return (
     <header id="top" className="wash-top relative scroll-mt-20">
-      <div className="mx-auto max-w-5xl px-6 pb-12 pt-14 sm:px-10 sm:pb-16 sm:pt-20">
-        <h1 className="rise t-name text-[clamp(38px,7vw,72px)] text-ink">
+      <div className="mx-auto max-w-5xl px-6 pb-12 pt-12 sm:px-10 sm:pb-16 sm:pt-20">
+        <h1 className="rise t-name text-ink">
           Prasanna Wagh<span className="accent-dot">.</span>
         </h1>
 
-        <div className="rise mt-7 max-w-[58ch]" style={{ "--d": "60ms" } as React.CSSProperties}>
-          <p className="text-[17px] leading-[1.65] text-body sm:text-[18px]">
+        <div className="rise mt-8 max-w-[58ch]" style={{ "--d": "60ms" } as React.CSSProperties}>
+          <p className="text-prose text-body">
             I am a full-stack engineer in Pune. I work across the whole thing: the database schema,
             the API, the interface, and getting it deployed.
           </p>
 
-          <p className="mt-5 text-[16px] leading-[1.65] text-body sm:text-[17px]">
+          <p className="mt-6 text-prose text-body">
             Right now I lead the build of a tour booking marketplace at{" "}
             <span className="font-medium text-ink">Octogle Technologies</span>. It runs in Spain and
             Europe, four role portals on one backend, with three engineers working alongside me.
@@ -27,13 +27,15 @@ export default function Masthead() {
         </div>
 
         <div
-          className="rise mt-8 flex flex-wrap items-center gap-x-6 gap-y-4"
+          className="rise mt-8"
           style={{ "--d": "120ms" } as React.CSSProperties}
         >
+          {/* One solid action. The rest are links, set apart on their own line
+              so the row is not a mixed bag of a button and three bits of text. */}
           <a
             href="/Prasanna-Wagh-Fullstack-Engineer.pdf"
             download
-            className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-5 py-2.5 text-[15px] font-medium text-white transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_16px_34px_-16px_rgba(26,160,230,0.75)]"
+            className="group inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3 text-note font-medium text-white transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[2px] hover:shadow-[0_16px_34px_-16px_rgba(26,160,230,0.75)]"
           >
             Résumé
             <svg
@@ -50,21 +52,24 @@ export default function Masthead() {
             </svg>
           </a>
 
-          {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              target={l.href.startsWith("http") ? "_blank" : undefined}
-              rel={l.href.startsWith("http") ? "noopener" : undefined}
-              className="link-quiet text-[14.5px] text-body"
-            >
-              {l.label}
-            </a>
-          ))}
+          <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+            {LINKS.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  target={l.href.startsWith("http") ? "_blank" : undefined}
+                  rel={l.href.startsWith("http") ? "noopener" : undefined}
+                  className="link-quiet text-fine text-muted"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <p
-          className="rise mt-7 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-muted"
+          className="rise mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-note text-muted"
           style={{ "--d": "180ms" } as React.CSSProperties}
         >
           <span className="inline-flex items-center gap-2">

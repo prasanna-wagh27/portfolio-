@@ -104,8 +104,40 @@ more.
 `#1aa0e6` on white is 2.9:1, so text uses derived blues: `#1290db` for display
 accents and units (3.4:1), `#0077c2` for links (4.7:1).
 
-**Type.** Geist, self-hosted. The name runs at `clamp(38px, 7vw, 72px)`; body
-copy sits at 16px on mobile and 17px above it. Labels are 11px at `0.2em`.
+**Type is a scale, not a set of guesses.** Nine steps, defined once in
+`@theme`, each binding its own line height and tracking:
+
+| token | size | line height | tracking |
+| --- | --- | --- | --- |
+| `label` | 11px | 1 | +0.18em |
+| `meta` | 12.5px | 1.45 | 0 |
+| `fine` | 13.5px | 1.5 | -0.004em |
+| `note` | 15px | 1.55 | -0.01em |
+| `prose` | 16.5px | 1.68 | -0.014em |
+| `lead` | 18.5px | 1.5 | -0.02em |
+| `h3` | clamp(21, 2.4vw, 26) | 1.2 | -0.026em |
+| `h2` | clamp(26, 3.2vw, 34) | 1.12 | -0.03em |
+| `display` | clamp(40, 6.6vw, 72) | 0.94 | -0.042em |
+
+Tracking is bound to the size because the right tracking for 11px is not the
+right tracking for 72px: display sizes need pulling in, small sizes need letting
+out. Binding them together means a component cannot pick a size and forget the
+tracking. Headings use the named `.t-h2` / `.t-h3` / `.t-name` classes and are
+never hand-sized at the call site.
+
+This replaced fourteen ad hoc sizes, including 11.5px, 12.5px, 13.5px, 14.5px
+and 15.5px, chosen per component. That is what made the page feel unresolved
+even when each individual screen looked fine.
+
+**Spacing is a 4/8 grid.** Everything vertical comes from
+{4 8 12 16 24 32 48 64 80 96}px. Nothing uses 5, 7, 9 or 14. Sections are
+`py-16 sm:py-20` without exception.
+
+**One layout primitive.** `components/Rail.tsx` is the label rail plus content
+grid that every section on the site is built from, including the case studies
+and the dark decision band. It was copy-pasted in four places before, which
+meant it could not be improved in one. The label sits 5px down so its cap top
+lines up with the first line of body copy beside it.
 
 **Motion.** Entrance is a blur-and-rise staggered by a `--d` custom property;
 the masthead runs it on load, everything else on an IntersectionObserver. A two

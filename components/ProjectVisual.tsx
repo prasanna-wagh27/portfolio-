@@ -26,7 +26,7 @@ export default function ProjectVisual({ project }: { project: Project }) {
   if (!hasDiagram(project.slug)) return null;
 
   return (
-    <div className="visual rounded-2xl px-5 py-7 sm:px-8 sm:py-9">
+    <div className="visual overflow-hidden rounded-2xl">
       <Diagram slug={project.slug} />
     </div>
   );

@@ -19,14 +19,14 @@ const FACTS = [
 export default function Background() {
   return (
     <Section id="background" label="Background">
-      <div className="grid gap-10 sm:grid-cols-2 sm:gap-14">
+      <div className="grid gap-12 sm:grid-cols-2 sm:gap-12">
         <Reveal>
           <div>
             <h3 className="t-label text-faint">Education</h3>
-            <ul className="mt-5">
+            <ul className="mt-6">
               {EDUCATION.map((r) => (
                 <li key={r.title} className="border-b border-line py-4 last:border-0">
-                  <p className="text-[15.5px] font-medium tracking-[-0.02em] text-ink">{r.title}</p>
+                  <p className="text-note font-medium text-ink">{r.title}</p>
                   <p className="t-meta mt-1 text-muted">
                     {r.org} · {r.meta}
                   </p>
@@ -39,14 +39,14 @@ export default function Background() {
         <Reveal delay={70}>
           <div>
             <h3 className="t-label text-faint">Details</h3>
-            <dl className="mt-5">
+            <dl className="mt-6">
               {FACTS.map((f) => (
                 <div
                   key={f.k}
                   className="flex items-baseline justify-between gap-6 border-b border-line py-4 last:border-0"
                 >
-                  <dt className="flex-none text-[14px] text-muted">{f.k}</dt>
-                  <dd className="text-right text-[14.5px] font-medium text-ink">{f.v}</dd>
+                  <dt className="flex-none text-note text-muted">{f.k}</dt>
+                  <dd className="text-right text-note font-medium text-ink">{f.v}</dd>
                 </div>
               ))}
             </dl>
