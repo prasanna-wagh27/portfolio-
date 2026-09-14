@@ -626,6 +626,127 @@ export const DAILY = [
   { minutes: 10, task: "Log mistakes" },
 ];
 
+/**
+ * The Pareto set: the topics that carry most of the interview outcome.
+ *
+ * Chosen against what September 2026 reports say is actually being asked, not
+ * against what is tidy to teach. The strongest signals behind this list:
+ *
+ *   - The Node event loop is described as the single most-tested concept at
+ *     every level, with nextTick vs setImmediate ordering and micro vs macro
+ *     task ordering used to separate memorised definitions from real reasoning.
+ *     All five event loop topics are in.
+ *   - React interviews expect a candidate with production experience to raise
+ *     useEffect cleanup and fetch race conditions unprompted. Cleanup, the
+ *     dependency array and a custom fetch hook are in; RTL and Suspense are not.
+ *   - Live coding converges on a debounced input and a reusable data fetching
+ *     hook, so both are in and the polyfill drills are out.
+ *   - Database rounds ask for indexes, EXPLAIN, the N+1 problem, transactions
+ *     and isolation. Those are in; normalisation theory is not.
+ *   - TypeScript fluency during live coding is now assumed rather than tested
+ *     separately, so the utility types and narrowing that appear in real code
+ *     are in, and the type system corners are out.
+ *
+ * Kept deliberately despite being lower yield, because shipping without them
+ * reads badly for someone who claims production ownership: Docker basics and
+ * a CI pipeline you can describe end to end.
+ *
+ * This is a judgement call built on those reports, not a measurement. Edit it.
+ * Anything not in here still exists on the full track.
+ */
+export const CORE: ReadonlySet<string> = new Set([
+  // JavaScript core: async and closures carry this phase
+  "js.async.stack", "js.async.loop", "js.async.micro", "js.async.promises",
+  "js.async.asyncawait", "js.async.errors", "js.async.combinators",
+  "js.fn.arrow", "js.fn.closures", "js.fn.this", "js.fn.bind",
+  "js.mem.hoisting", "js.mem.tdz", "js.mem.refs", "js.mem.gc",
+  "js.obj.copy",
+  "js.machine.debounce", "js.machine.throttle",
+
+  // TypeScript: what shows up in real code, not the type system's corners
+  "ts.shapes.typevsint", "ts.shapes.union",
+  "ts.generics.fn", "ts.generics.extends",
+  "ts.utility.pick", "ts.utility.omit", "ts.utility.partial", "ts.utility.record",
+  "ts.narrow.guards", "ts.narrow.discriminated",
+  "ts.real.props",
+
+  // React: cleanup, re-renders and memoisation
+  "react.hooks.usestate", "react.hooks.useeffect", "react.hooks.cleanup",
+  "react.hooks.usecontext", "react.hooks.rules",
+  "react.custom.fetch",
+  "react.context.rerender",
+  "react.perf.memo", "react.perf.usememo", "react.perf.usecallback",
+  "react.perf.referential",
+  "react.render.diff", "react.render.why",
+  "react.ssr.ssr", "react.ssr.hydration",
+
+  // Node: the heaviest phase, and the event loop is the heaviest module in it
+  "node.loop.phases", "node.loop.timers", "node.loop.nexttick",
+  "node.loop.blocking", "node.loop.libuv",
+  "node.express.chaining", "node.express.errorsig",
+  "node.auth.sessionstoken", "node.auth.jwt", "node.auth.refresh", "node.auth.rbac",
+  "node.security.xss", "node.security.csrf", "node.security.injection",
+  "node.cache.aside", "node.cache.ttl",
+  "node.streams.pipeline", "node.streams.backpressure",
+  "node.concurrency.cluster", "node.concurrency.workers",
+  "node.sockets.choice", "node.sockets.rooms",
+  "node.api.rest", "node.api.pagination",
+
+  // Databases
+  "db.pg.joins", "db.pg.tx", "db.pg.isolation", "db.pg.deadlock",
+  "db.index.btree", "db.index.composite", "db.index.explain", "db.index.nplusone",
+  "db.conn.pooling",
+  "db.redis.caching",
+  "db.rediscache.eviction", "db.rediscache.invalidation",
+
+  // Low level design
+  "lld.solid.srp", "lld.solid.ocp", "lld.solid.dip",
+  "lld.patterns.strategy",
+  "lld.practice.lru",
+
+  // System design: two exercises done properly beat six done shallowly
+  "sd.url.requirements", "sd.url.keygen", "sd.url.model",
+  "sd.ratelimit.counter", "sd.ratelimit.bucket", "sd.ratelimit.distributed",
+  "sd.notify.queue", "sd.notify.idempotency",
+  "sd.realtime.pushpoll",
+  "sd.caching.strategies",
+
+  // Docker and CI: basics only, but not nothing
+  "ops.docker.images", "ops.docker.dockerfile", "ops.docker.layers",
+  "ops.multistage.stages",
+  "ops.ci.stages", "ops.ci.tests", "ops.ci.deploy",
+  "ops.config.envvars",
+
+  // Project deep dive: the highest yield block on the page, so it survives
+  // almost intact. It is recall rather than learning, so it is also the fastest.
+  "proj.one.problem", "proj.one.architecture", "proj.one.contribution",
+  "proj.one.d1", "proj.one.d2", "proj.one.d3", "proj.one.broke", "proj.one.redo",
+  "proj.two.problem", "proj.two.architecture", "proj.two.contribution", "proj.two.d1",
+  "proj.rehearse.draw1", "proj.rehearse.db", "proj.rehearse.scale",
+  "proj.rehearse.bottleneck",
+  "proj.mocks.aloud", "proj.mocks.followups", "proj.mocks.machine",
+
+  // DSA: the patterns that screening rounds actually draw from
+  "dsa.arrays.traversal", "dsa.arrays.prefix",
+  "dsa.strings.palindrome",
+  "dsa.hash.frequency", "dsa.hash.twosum",
+  "dsa.pointers.opposite", "dsa.pointers.fastslow",
+  "dsa.window.variable",
+  "dsa.recursion.backtrack",
+  "dsa.sorting.binary",
+  "dsa.stacks.parens",
+  "dsa.trees.traversals", "dsa.trees.bfs",
+]);
+
+export function isCore(id: string): boolean {
+  return CORE.has(id);
+}
+
 export const ALL_TOPIC_IDS = ALL_PHASES.flatMap((p) =>
   p.modules.flatMap((m) => m.topics.map((t) => t.id)),
 );
+
+export const CORE_TOPIC_IDS = ALL_TOPIC_IDS.filter(isCore);
+
+/** DSA target on the Pareto track: enough to clear a screen, not 100. */
+export const DSA_TARGET_CORE = { easy: 35, medium: 15 };

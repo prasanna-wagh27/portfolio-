@@ -100,6 +100,24 @@ Using it:
   narrow screen gets a jump menu in the control bar instead, and the switches
   move below the bar rather than eating a third of the viewport.
 
+**Two tracks.** A Pareto switch in the control bar flips between 135 topics and
+all 354. The Pareto set is chosen against September 2026 interview reports
+rather than topic tidiness: the Node event loop in full because it is reported
+as the single most-tested concept at every level, useEffect cleanup and fetch
+race conditions because React rounds expect those raised unprompted, a debounced
+input and a reusable fetch hook because live coding converges on them, indexes
+and EXPLAIN and N+1 and isolation rather than normal forms, and Docker plus CI
+trimmed to basics rather than dropped. The project deep dive survives almost
+intact, being the highest yield block and also the fastest, since it is recall
+rather than learning.
+
+It lives as one explicit `CORE` set in `lib/roadmap.ts` rather than 135 flags
+scattered through the data, so the whole 80/20 can be read and argued with in
+one place. Ticks are shared across both tracks but counted per track: a topic
+ticked on Full that is not in the set does not move the Pareto number. Modules
+with nothing in the set disappear on the Pareto track, and the DSA target drops
+from 100 problems to 50.
+
 Progress lives in `localStorage` under `pw.roadmap.v2`, so it is per browser and
 never leaves the machine. The server render is always the empty board and saved
 state is applied after mount, so there is no hydration mismatch. Ids that no

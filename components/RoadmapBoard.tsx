@@ -5,18 +5,22 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ALL_PHASES,
   ALL_TOPIC_IDS,
+  CORE_TOPIC_IDS,
   DAILY,
   DSA_TARGET,
+  DSA_TARGET_CORE,
   PASS_BAR,
   SPACED_REVISION,
+  isCore,
   type Module,
   type Phase,
 } from "@/lib/roadmap";
 
 const KEY = "pw.roadmap.v2";
 
-type Saved = { done: string[]; solved: { easy: number; medium: number } };
-const EMPTY: Saved = { done: [], solved: { easy: 0, medium: 0 } };
+type Track = "full" | "core";
+type Saved = { done: string[]; solved: { easy: number; medium: number }; track: Track };
+const EMPTY: Saved = { done: [], solved: { easy: 0, medium: 0 }, track: "core" };
 
 function read(): Saved {
   try {
@@ -31,6 +35,7 @@ function read(): Saved {
         easy: Math.max(0, Number(p.solved?.easy) || 0),
         medium: Math.max(0, Number(p.solved?.medium) || 0),
       },
+      track: p.track === "full" ? "full" : "core",
     };
   } catch {
     return EMPTY;
@@ -103,18 +108,22 @@ function ModuleCard({
   onToggleOpen,
   onToggleTopic,
   onToggleAll,
+  onTrack,
 }: {
   module: Module;
   topics: Module["topics"];
   done: Set<string>;
   open: boolean;
   query: string;
+  /** Whether a topic counts on the track currently being shown. */
+  onTrack: (id: string) => boolean;
   onToggleOpen: () => void;
   onToggleTopic: (id: string) => void;
   onToggleAll: (next: boolean) => void;
 }) {
-  const total = m.topics.length;
-  const count = m.topics.filter((t) => done.has(t.id)).length;
+  const onTrackTopics = m.topics.filter((t) => onTrack(t.id));
+  const total = onTrackTopics.length;
+  const count = onTrackTopics.filter((t) => done.has(t.id)).length;
   const all = count === total;
   const some = count > 0 && !all;
   const ref = useRef<HTMLInputElement>(null);
@@ -278,6 +287,15 @@ export default function RoadmapBoard() {
 
   const done = useMemo(() => new Set(saved.done), [saved.done]);
 
+  const q = query.trim().toLowerCase();
+  const track = saved.track;
+  const core = track === "core";
+
+  /** Every topic id counted on the active track. */
+  const trackIds = core ? CORE_TOPIC_IDS : ALL_TOPIC_IDS;
+  const onTrack = useCallback((id: string) => (core ? isCore(id) : true), [core]);
+
+
   const toggleTopic = useCallback((id: string) => {
     setSaved((prev) => {
       const next = new Set(prev.done);
@@ -287,30 +305,33 @@ export default function RoadmapBoard() {
     });
   }, []);
 
-  const toggleAll = useCallback((m: Module, on: boolean) => {
-    setSaved((prev) => {
-      const next = new Set(prev.done);
-      for (const t of m.topics) {
-        if (on) next.add(t.id);
-        else next.delete(t.id);
-      }
-      return { ...prev, done: [...next] };
-    });
-  }, []);
+  const toggleAll = useCallback(
+    (m: Module, on: boolean) => {
+      setSaved((prev) => {
+        const next = new Set(prev.done);
+        // only the topics visible on this track, so ticking a module on the
+        // Pareto view does not silently complete topics it is not showing
+        for (const t of m.topics.filter((x) => onTrack(x.id))) {
+          if (on) next.add(t.id);
+          else next.delete(t.id);
+        }
+        return { ...prev, done: [...next] };
+      });
+    },
+    [onTrack],
+  );
 
-  const q = query.trim().toLowerCase();
-
-  /** Topics left after the search box and the remaining-only switch. */
+  /** Topics left after the track, the search box and the remaining-only switch. */
   const topicsFor = useCallback(
     (m: Module) => {
-      let list = m.topics;
+      let list = m.topics.filter((t) => onTrack(t.id));
       if (q && !m.title.toLowerCase().includes(q)) {
         list = list.filter((t) => t.label.toLowerCase().includes(q));
       }
       if (remainingOnly) list = list.filter((t) => !done.has(t.id));
       return list;
     },
-    [q, remainingOnly, done],
+    [q, remainingOnly, done, onTrack],
   );
 
   const modulesFor = useCallback(
@@ -318,11 +339,12 @@ export default function RoadmapBoard() {
       p.modules
         .map((m) => ({ m, topics: topicsFor(m) }))
         .filter(({ m, topics }) => {
+          if (!m.topics.some((t) => onTrack(t.id))) return false;
           if (q) return topics.length > 0 || m.title.toLowerCase().includes(q);
           if (remainingOnly) return topics.length > 0;
           return true;
         }),
-    [topicsFor, q, remainingOnly],
+    [topicsFor, q, remainingOnly, onTrack],
   );
 
   const phases = useMemo(
@@ -330,12 +352,13 @@ export default function RoadmapBoard() {
     [modulesFor],
   );
 
-  const totalDone = ALL_TOPIC_IDS.filter((id) => done.has(id)).length;
-  const total = ALL_TOPIC_IDS.length;
+  const totalDone = trackIds.filter((id) => done.has(id)).length;
+  const total = trackIds.length;
   const phaseCount = (p: Phase) => {
-    const ids = p.modules.flatMap((m) => m.topics.map((t) => t.id));
+    const ids = p.modules.flatMap((m) => m.topics.map((t) => t.id)).filter(onTrack);
     return { done: ids.filter((id) => done.has(id)).length, total: ids.length };
   };
+  const dsaTarget = core ? DSA_TARGET_CORE : DSA_TARGET;
 
   const allModuleIds = ALL_PHASES.flatMap((p) => p.modules.map((m) => m.id));
   const searching = q.length > 0;
@@ -386,6 +409,33 @@ export default function RoadmapBoard() {
       <div className="sticky top-16 z-30 border-y border-line bg-white/92 backdrop-blur-xl">
         <div className="mx-auto max-w-5xl px-6 py-3 sm:px-10">
           <div className="flex items-center gap-4">
+            {/* The switch sits against the count, because it is the thing that
+                changes what the count is out of. */}
+            <div
+              role="group"
+              aria-label="Track"
+              className="flex flex-none rounded-full border border-line p-[2px]"
+            >
+              {(
+                [
+                  ["core", "Pareto"],
+                  ["full", "Full"],
+                ] as [Track, string][]
+              ).map(([value, label]) => (
+                <button
+                  key={value}
+                  type="button"
+                  aria-pressed={track === value}
+                  onClick={() => setSaved((prev) => ({ ...prev, track: value }))}
+                  className={`rounded-full px-3 py-1 text-fine transition-colors duration-200 ${
+                    track === value ? "bg-ink text-white" : "text-muted hover:text-ink"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
             <p className="t-meta flex-none text-muted">
               <span className="text-ink">{totalDone}</span> / {total}
             </p>
@@ -413,7 +463,7 @@ export default function RoadmapBoard() {
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search 354 topics"
+                placeholder={`Search ${total} topics`}
                 className="w-full rounded-full border border-line bg-white py-2 pl-9 pr-3 text-fine text-ink outline-none transition-colors placeholder:text-faint focus:border-brand"
               />
             </label>
@@ -479,6 +529,46 @@ export default function RoadmapBoard() {
           </nav>
 
           <div className="min-w-0">
+            {/* what the chosen track means */}
+            <section className="pt-16">
+              <div className="visual rounded-2xl px-6 py-6 sm:px-8">
+                <p className="t-label text-muted">
+                  {core ? "Pareto track" : "Full track"}
+                </p>
+                {core ? (
+                  <>
+                    <p className="mt-4 max-w-[68ch] text-prose text-body">
+                      {CORE_TOPIC_IDS.length} topics of {ALL_TOPIC_IDS.length}, picked against what
+                      September 2026 interview reports say is actually being asked. The bet is that
+                      these carry most of the outcome, and that going deep on them beats going wide
+                      on everything.
+                    </p>
+                    <p className="mt-4 max-w-[68ch] text-fine text-muted">
+                      The heaviest signals behind the cut: the Node event loop is reported as the
+                      single most-tested concept at every level, so all five of its topics are in.
+                      React rounds expect you to raise useEffect cleanup and fetch race conditions
+                      unprompted. Live coding converges on a debounced input and a reusable fetch
+                      hook, so the polyfill drills are out and those two are in. Database rounds ask
+                      for indexes, EXPLAIN, N+1, transactions and isolation, not normal forms.
+                      Docker and CI are trimmed to basics rather than dropped, because shipping
+                      without them reads badly for someone claiming production ownership.
+                    </p>
+                    <p className="mt-4 max-w-[68ch] text-fine text-faint">
+                      A judgement call built on those reports, not a measurement. The list is one
+                      block in lib/roadmap.ts, so it is meant to be argued with. Nothing is deleted:
+                      switch to Full and every topic is still there, with your ticks intact.
+                    </p>
+                  </>
+                ) : (
+                  <p className="mt-4 max-w-[68ch] text-prose text-body">
+                    All {ALL_TOPIC_IDS.length} topics. Roughly 67 days at one module a day. Switch
+                    to Pareto for the {CORE_TOPIC_IDS.length} that carry most of the interview
+                    outcome, which is about 30 days of thorough study.
+                  </p>
+                )}
+              </div>
+            </section>
+
             {/* standing rules */}
             <section className="py-16">
               <h2 className="t-label flex items-center gap-3 text-muted">
@@ -569,6 +659,7 @@ export default function RoadmapBoard() {
                         }
                         onToggleTopic={toggleTopic}
                         onToggleAll={(on) => toggleAll(m, on)}
+                        onTrack={onTrack}
                       />
                     ))}
                   </div>
@@ -577,20 +668,20 @@ export default function RoadmapBoard() {
                     <div className="mt-10">
                       <h4 className="t-label text-faint">Problems solved</h4>
                       <p className="mt-3 text-fine text-muted">
-                        Target is {DSA_TARGET.easy + DSA_TARGET.medium}: {DSA_TARGET.easy} easy and{" "}
-                        {DSA_TARGET.medium} medium.
+                        Target is {dsaTarget.easy + dsaTarget.medium}: {dsaTarget.easy} easy and{" "}
+                        {dsaTarget.medium} medium.
                       </p>
                       <div className="mt-4 max-w-[420px] border-t border-line">
                         <Counter
                           label="Easy"
                           value={saved.solved.easy}
-                          target={DSA_TARGET.easy}
+                          target={dsaTarget.easy}
                           onChange={(easy) => setSaved((p2) => ({ ...p2, solved: { ...p2.solved, easy } }))}
                         />
                         <Counter
                           label="Medium"
                           value={saved.solved.medium}
-                          target={DSA_TARGET.medium}
+                          target={dsaTarget.medium}
                           onChange={(medium) =>
                             setSaved((p2) => ({ ...p2, solved: { ...p2.solved, medium } }))
                           }
