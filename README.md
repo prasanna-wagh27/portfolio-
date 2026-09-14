@@ -87,6 +87,17 @@ work. That is not a tracker. It is now 10 phases, 67 modules and 354 topics, and
 the rule for the data file is that any line which cannot be finished in one
 sitting belongs split in two.
 
+Every topic label states what you have to be able to **do**, not what the topic
+is called. "The event loop" became "Name the event loop phases and what each one
+drains"; "Closures" became "Explain a closure, and write one that fixes the loop
+variable trap". A bare noun tells you nothing about whether you are finished
+with it, which makes it useless against the pass bar.
+
+Module order inside React and Node follows the sequence the plan specifies,
+hooks then performance then rendering then SSR, and event loop then middleware
+and auth then streams then workers then WebSockets. Context, state, security,
+caching and logging follow rather than interrupting those runs.
+
 Using it:
 
 - Modules start collapsed, apart from the first one with work left in it, so

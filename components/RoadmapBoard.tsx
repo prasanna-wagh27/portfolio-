@@ -61,12 +61,12 @@ function Bar({ done, total, className = "" }: { done: number; total: number; cla
   );
 }
 
-function Box({ size = 18 }: { size?: number }) {
+function Box({ size = 18, className = "" }: { size?: number; className?: string }) {
   return (
     <span
       aria-hidden="true"
       style={{ height: size, width: size }}
-      className="relative grid flex-none place-items-center rounded-[5px] border border-line-2 bg-white transition-[background-color,border-color] duration-200 group-hover:border-brand peer-checked:border-brand peer-checked:bg-brand peer-indeterminate:border-brand peer-checked:[&>.tick]:scale-100 peer-checked:[&>.tick]:opacity-100 peer-indeterminate:[&>.dash]:opacity-100 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand"
+      className={`${className} relative grid flex-none place-items-center rounded-[5px] border border-line-2 bg-white transition-[background-color,border-color] duration-200 group-hover:border-brand peer-checked:border-brand peer-checked:bg-brand peer-indeterminate:border-brand peer-checked:[&>.tick]:scale-100 peer-checked:[&>.tick]:opacity-100 peer-indeterminate:[&>.dash]:opacity-100 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand`}
     >
       <svg
         viewBox="0 0 14 14"
@@ -188,14 +188,14 @@ function ModuleCard({
             const checked = done.has(t.id);
             return (
               <li key={t.id}>
-                <label className="group flex cursor-pointer items-center gap-3 py-[7px]">
+                <label className="group flex cursor-pointer items-start gap-3 py-[7px]">
                   <input
                     type="checkbox"
                     checked={checked}
                     onChange={() => onToggleTopic(t.id)}
                     className="peer sr-only"
                   />
-                  <Box size={16} />
+                  <Box size={16} className="mt-[3px]" />
                   <span
                     className={`text-fine transition-colors duration-200 ${
                       checked ? "text-faint line-through decoration-line-2" : "text-body"
