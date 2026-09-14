@@ -17,11 +17,14 @@ export default function Rail({
   children,
   id,
   tone = "light",
+  aside,
 }: {
   label: string;
   children: ReactNode;
   id?: string;
   tone?: "light" | "dark";
+  /** Optional line under the rule in the rail, such as a progress count. */
+  aside?: ReactNode;
 }) {
   const dark = tone === "dark";
   return (
@@ -44,6 +47,7 @@ export default function Rail({
             aria-hidden="true"
             className={`mt-4 hidden h-px w-full lg:block ${dark ? "rule-dark" : "rule-tight"}`}
           />
+          {aside ? <div className="mt-4 hidden lg:block">{aside}</div> : null}
         </div>
       </Reveal>
 

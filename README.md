@@ -72,6 +72,22 @@ Redis, BullMQ → workers) rather than decoration. Below 620px they scroll
 horizontally instead of scaling, because a 940-wide viewBox squeezed onto a
 phone puts the labels under 7px.
 
+## The roadmap page
+
+`/roadmap` is a private working page: an interview preparation plan with a tick
+box against every item. It is linked from the footer and from nowhere else, is
+absent from the nav and the command menu, and carries `noindex, nofollow` so it
+stays out of search results.
+
+Progress lives in `localStorage` under `pw.roadmap.v1`, which means it is per
+browser and never leaves the machine. The server render is always the empty
+board, and saved state is applied after mount, so there is no hydration
+mismatch. Ids that no longer exist in `lib/roadmap.ts` are dropped on read, so
+editing the plan cannot inflate the completed count.
+
+Content is in `lib/roadmap.ts`. Item ids are what gets stored, so renaming a
+label is safe and changing an id loses that tick.
+
 ## Technology icons
 
 Brand marks are generated from the [Simple Icons](https://simpleicons.org)
@@ -174,14 +190,17 @@ app/
   layout.tsx           metadata, JSON-LD Person schema, Geist fonts
   page.tsx             homepage composition
   work/[slug]/page.tsx case studies (SSG from lib/work.ts)
+  roadmap/page.tsx     private prep tracker, noindex
   globals.css          design tokens + utilities
 components/
   Nav  Masthead  Work  Experience  Toolkit
   Contributions  Background  Contact  Footer
-  ProjectVisual  Diagram  Section  TechIcon
+  ProjectVisual  Diagram  Rail  Section  MetaLine  TechIcon
+  RoadmapBoard                          (client, localStorage)
   Reveal  ScrollProgress  CommandMenu     (client components, with Nav)
 lib/
   work.ts         projects and their decision logs
+  roadmap.ts      the prep plan behind /roadmap
   duration.ts     live role durations
   icons.ts        generated brand marks
 public/

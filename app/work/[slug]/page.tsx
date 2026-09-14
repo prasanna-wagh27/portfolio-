@@ -79,7 +79,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
       <Nav home={false} />
 
       <main>
-        <header className="wash-top">
+        <header id="top" className="wash-top">
           <div className="mx-auto max-w-5xl px-6 pb-12 pt-12 sm:px-10 sm:pb-20 sm:pt-16">
             <Link
               href="/#work"
