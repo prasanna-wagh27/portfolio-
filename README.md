@@ -75,18 +75,39 @@ phone puts the labels under 7px.
 ## The roadmap page
 
 `/roadmap` is a private working page: an interview preparation plan with a tick
-box against every item. It is linked from the footer and from nowhere else, is
+box against every topic. It is linked from the footer and from nowhere else, is
 absent from the nav and the command menu, and carries `noindex, nofollow` so it
 stays out of search results.
 
-Progress lives in `localStorage` under `pw.roadmap.v1`, which means it is per
-browser and never leaves the machine. The server render is always the empty
-board, and saved state is applied after mount, so there is no hydration
-mismatch. Ids that no longer exist in `lib/roadmap.ts` are dropped on read, so
-editing the plan cannot inflate the completed count.
+**Three levels: phase, module, topic.** The topic is the unit of work and the
+only thing with a tick box. The first version of this page had one tick per
+module, with the actual sub-topics crammed into a grey line of prose underneath,
+which meant "Async JavaScript" was a single check box covering nine evenings of
+work. That is not a tracker. It is now 10 phases, 67 modules and 354 topics, and
+the rule for the data file is that any line which cannot be finished in one
+sitting belongs split in two.
 
-Content is in `lib/roadmap.ts`. Item ids are what gets stored, so renaming a
-label is safe and changing an id loses that tick.
+Using it:
+
+- Modules start collapsed, apart from the first one with work left in it, so
+  the page opens as an index rather than a wall of 354 rows.
+- The module check box ticks or clears the whole module, and shows a dash when
+  it is part done.
+- A control bar sticks under the nav with overall progress, a search across
+  every topic, an only-what-is-left switch, expand and collapse, and reset.
+  Searching auto-expands whatever matches and highlights the match.
+- A phase index sits in the left rail on desktop with live per-phase counts; a
+  narrow screen gets a jump menu in the control bar instead, and the switches
+  move below the bar rather than eating a third of the viewport.
+
+Progress lives in `localStorage` under `pw.roadmap.v2`, so it is per browser and
+never leaves the machine. The server render is always the empty board and saved
+state is applied after mount, so there is no hydration mismatch. Ids that no
+longer exist in `lib/roadmap.ts` are dropped on read, so editing the plan cannot
+inflate the completed count.
+
+Content is in `lib/roadmap.ts`. Topic ids are `module.slug` and are what gets
+stored, so a label can be reworded freely, but changing a slug loses that tick.
 
 ## Technology icons
 
